@@ -51,11 +51,11 @@ const RightNavBar = () => {
 
     useWindowWidth()
     
-    const displayIcon = isOpen ? <MdChevronRight className="text-xl size-6 cursor-pointer" onClick={() => changeIsOpen(!isOpen)} />
-    : <MdChevronLeft className="text-xl size-6 cursor-pointer" onClick={() => changeIsOpen(!isOpen)} />
+    const displayIcon = isOpen ? <MdChevronRight className="text-xl size-6 cursor-pointer"  />
+    : <MdChevronLeft className="text-xl size-6 cursor-pointer"/>
   return (
     <div className={`${isOpen? "min-w-50": "min-w-15"} bg-gray-100 p-2 border-gr border-l-1 transition-all duration-200 ease-in-out`}>
-        <div className={`${isOpen ? "right-45" : "right-10"} absolute bg-gray-200 border-gray-500 hover:border-gray-600 border-2 rounded-md p-1 hover:bg-gray-100 hover:scale-105 transition-all duration-200 ease-in-out`}>
+        <div onClick={() => changeIsOpen(!isOpen)} className={`${isOpen ? "right-46" : "right-11"} absolute bg-blue-800 text-white rounded-md p-1 hover:bg-blue-6000 hover:scale-105 transition-all duration-200 ease-in-out`}>
             {displayIcon}
         </div>
         <ul className="flex flex-col gap-2 mt-10 ">

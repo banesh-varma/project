@@ -17,7 +17,7 @@ function App() {
         <div className='min-h-[90vh] w-full flex justify-between'>
           <div className='flex'>
             <LeftNav/>
-            <div className='mt-13 px-10'>
+            <div>
             <Routes>
               <Route path='/' element={<DashBoard/>}/>
               <Route path='/settings' element={<DashBoard/>}/>

@@ -97,7 +97,6 @@ const navItems = [
 const LeftNav = () => {
     const [isOpen, changeIsOpen] = useState(true)
 
-
     function useWindowWidth() {
         useEffect(() => {
           function handleResize() {
@@ -119,16 +118,13 @@ const LeftNav = () => {
         }, []); // Empty dependency array means this effect runs only once on mount and once on unmount
       }
 
-    useWindowWidth()
-
-    const displayIcon = isOpen ? <MdChevronLeft className="text-xl size-6 cursor-pointer" onClick={() => changeIsOpen(!isOpen)} />
-    : <MdChevronRight className="text-xl size-6 cursor-pointer" onClick={() => changeIsOpen(!isOpen)} />
+    useWindowWidth() 
 
     return (
-        <div className={`${isOpen? "min-w-50": "min-w-15"}  bg-gray-100 p-2 border-gr border-r-1 transition-all duration-200 ease-in-out`}>
-            <div className={`${isOpen ? "left-45" : "left-10"} absolute bg-gray-200 border-gray-500 hover:border-gray-600 border-2 rounded-md p-1 hover:bg-gray-100 hover:scale-105 transition-all duration-200 ease-in-out`}>
-                {displayIcon}
-            </div>
+        <div className={`${isOpen? "min-w-50": "min-w-15"} bg-gray-50 p-2 border-gr border-r-1 transition-all duration-200 ease-in-out`}>
+            <button onClick={() => changeIsOpen(!isOpen)}  className={`${isOpen ? "left-46" : "left-11"} cursor-pointer outline-0 absolute bg-blue-800 text-white rounded-md p-1 hover:bg-blue-600 hover:scale-105 transition-all duration-200 ease-in-out`}>
+                {isOpen ? <MdChevronLeft className="text-xl size-6 cursor-pointer"/> : <MdChevronRight className="text-xl size-6 cursor-pointer"/>}
+            </button>
             <ul className={`flex flex-col gap-2 mt-10  `}>
                 {navItems.map(eachItem => (<NavItems isOpen={isOpen} key={eachItem.name} itemDetails={eachItem} />))}
             </ul>
