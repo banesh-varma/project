@@ -1,4 +1,4 @@
-// import { Link,Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 interface ItemDetails {
   name: string;
   link: string;
@@ -12,10 +12,10 @@ const NavItems = (props: { itemDetails: ItemDetails; isOpen?: boolean; onNavItem
     }
   return (
     <li className={`p-1.5 flex gap-2 items-center hover:font-medium hover:text-lg hover:bg-neutral-300 border-b-1 border-solid border-black`} onClick={onNavItemClick} >
-      {/* <Link to={itemDetails.link}> */}
+      <Link to={itemDetails.link}>
         <span className={`${isOpen? "": "text-md py-1 p-0"}`}>{itemDetails.icon}</span>
         <p className={isOpen? "" : "hidden"}>{itemDetails.name}</p>
-    {/* </Link> */}
+      </Link>
     </li>
   )
 }
