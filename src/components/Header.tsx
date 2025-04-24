@@ -1,6 +1,6 @@
 const Header = () => {
   return(
-    <div className="bg-blue-400 font-medium text-white flex justify-between items-center border-solid border-black border-b-1 px-3 fixed-top ">
+    <div className="bg-blue-400 font-medium text-white flex justify-between items-center border-solid border-black border-b-1 px-3 fixed-top h-[10vh]">
       <h1 className="font-bold text-shadow-md text-shadow-blue-900">N SHIVA PRASAD CO.</h1>
       <div className="bg-white mx-4 text-black border-1 border-solid border-black px-4 border-b-0">
         <select className=" p-4 px-5 rounded-md outline-0" name="" id="">

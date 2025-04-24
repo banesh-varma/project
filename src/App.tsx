@@ -11,18 +11,36 @@ import Clinets from './components/Clinets'
 
 function App() {
   return (
-    <div className='h-dvh'>
+    <div className='h-screen w-full'>
       <Header/>
-      <div className='flex justify-between'>
-        <LeftNav/>
-        <BrowserRouter>
-          <Routes>
-            <Route path='/' element={<DashBoard/>}/>
-            <Route path='/Clinets' element={<Clinets/>}/>
-          </Routes>
-        </BrowserRouter>
-        <RightNavBar />
-      </div>
+      <BrowserRouter>
+        <div className='min-h-[90vh] w-full flex justify-between'>
+          <div className='flex'>
+            <LeftNav/>
+            <div className='mt-13 px-10'>
+            <Routes>
+              <Route path='/' element={<DashBoard/>}/>
+              <Route path='/settings' element={<DashBoard/>}/>
+              <Route path='/services' element={<DashBoard/>}/>
+              <Route path='/payRoll' element={<DashBoard/>}/>
+              <Route path='/professionals' element={<DashBoard/>}/>
+              <Route path='/consultants' element={<DashBoard/>}/>
+              <Route path='/clients' element={<Clinets/>}/>
+              <Route path='/tasks' element={<DashBoard/>}/>
+              <Route path='/inward-outward' element={<DashBoard/>}/>
+              <Route path='/requests' element={<DashBoard/>}/>
+              <Route path='/calls' element={<DashBoard/>}/>
+              <Route path='/chats' element={<DashBoard/>}/>
+              <Route path='/whatsup' element={<DashBoard/>}/>
+              <Route path='/email' element={<DashBoard/>}/>
+              <Route path='/accounts' element={<DashBoard/>}/>
+              <Route path='/reports' element={<DashBoard/>}/>
+            </Routes>
+            </div>
+          </div>
+          <RightNavBar />
+        </div>
+      </BrowserRouter>
     </div>
   )
 }
