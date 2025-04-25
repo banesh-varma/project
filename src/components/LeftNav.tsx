@@ -95,7 +95,7 @@ const navItems = [
 ]
 
 const LeftNav = () => {
-    const [isOpen, changeIsOpen] = useState(true)
+    const [isOpen, changeIsOpen] = useState(false)
 
     function useWindowWidth() {
         useEffect(() => {

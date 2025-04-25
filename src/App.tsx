@@ -5,9 +5,7 @@ import './App.css'
 import LeftNav from './components/LeftNav'
 import RightNavBar from './components/RightNavBar'
 import DashBoard from './components/DashBoard'
-import Clinets from './components/Clinets'
-
-
+import Clinets from './components/client/Clinets'
 
 function App() {
   return (
@@ -15,9 +13,9 @@ function App() {
       <Header/>
       <BrowserRouter>
         <div className='min-h-[90vh] w-full flex justify-between'>
-          <div className='flex'>
+          <div className='flex w-full'>
             <LeftNav/>
-            <div>
+            <div className='w-full'>
             <Routes>
               <Route path='/' element={<DashBoard/>}/>
               <Route path='/settings' element={<DashBoard/>}/>

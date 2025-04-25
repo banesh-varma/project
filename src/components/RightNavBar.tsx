@@ -26,7 +26,7 @@ const rightNav = [
 ]
 
 const RightNavBar = () => {
-    const [isOpen, changeIsOpen] = useState(true)
+    const [isOpen, changeIsOpen] = useState(false)
 
     function useWindowWidth() {
         useEffect(() => {
