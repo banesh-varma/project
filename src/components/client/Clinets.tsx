@@ -65,22 +65,25 @@ const all = [
   },
 ];
 
-const forms = ["Add New?","Individual","Firm"]
+const forms = ["Add New?", "Individual", "Firm", "HUF"]
 
 const Clinets = () => {
   const [isFormsBtnActive, setFormsBtnActive] = useState("Add New?")
   return (
       <div className="w-full">
-        <div className="mt-12 mx-10">
-          <div className="w-full flex items-center justify-between">
-            <h1 className="text-3xl font-bold">Clients</h1>
-            <select  onChange={(e)=>{setFormsBtnActive(e.target.value)}} value={isFormsBtnActive} title="Add New Client Form" className="mt-3 !border-2 !border-gray-400 !rounded-lg px-4 py-2">
+        <div className="mx-2 flex items-center justify-between">
+          <h1 className="text-2xl font-semibold">Clients : <span className="text-lg">{isFormsBtnActive === "Add New?" ? "All Clients" : isFormsBtnActive}</span></h1>
+          <div className="flex items-center justify-between">
+            <select  onChange={(e)=>{setFormsBtnActive(e.target.value)}} value={isFormsBtnActive} title="Add New Client Form" className="w-100 !border-2 !border-gray-400 !rounded-lg px-4 py-1 my-2">
               {
                 forms.map((each, id) => <option key={id} value={each}>{each}</option>)
               }
             </select>
             {/* <button onClick={()=>{setFormsBtnActive(!isFormsBtnActive)}} type="button" title="Add New Client Form" className="flex place-items-center gap-2 text-xl bg-blue-800 text-white px-4 py-2 rounded-md cursor-pointer hover:bg-blue-700 hover:scale-105 transition-all outline-none"><BiPlusMedical className="mt-1"/> Add New</button> */}
           </div>
+        </div>
+        <hr className=""/>
+        <div className="mx-2">
             {
               isFormsBtnActive === "Add New?" && 
               <div className="flex w-full">
@@ -114,6 +117,14 @@ const Clinets = () => {
             }
             {
               isFormsBtnActive === "Individual" && <IndividualForm/>
+            }
+            {
+              isFormsBtnActive === "Firm" && 
+              <div>Firm</div>
+            }
+            {
+              isFormsBtnActive === "HUF" && 
+              <div>HUF</div>
             }
         </div>  
       </div>

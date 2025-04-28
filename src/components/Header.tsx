@@ -1,17 +1,19 @@
 const Header = () => {
   return(
-    <div className="bg-blue-800 font-medium text-white flex justify-between items-center border-solid border-black border-b-1 px-3 fixed-top min-h-[10vh]">
+    <div className="bg-blue-800 font-medium text-white flex justify-between items-center border-solid border-black border-b-1 px-3 fixed-top min-h-[6vh]">
+      <div className="w-130 flex justify-between items-center">
       <h1 className="font-bold text-shadow-md text-shadow-blue-900">N SHIVA PRASAD CO.</h1>
-      <div className="bg-white mx-4 text-black border-1 border-solid border-black px-4 border-b-0">
-        <select className=" p-4 px-5 rounded-md outline-0" name="" id="">
-          <option value="">CRM</option>
-          <option value="">ACC</option>
-          <option value="">GST</option>
-          <option value="">TDS</option>
-          <option value="">ITR</option>
-          <option value="">ROC</option>
-          <option value="">CMA</option>
-        </select>
+        <div className="bg-white mx-4 text-black border-1 border-solid border-black px-4 border-b-0">
+          <select className=" p-4 px-5 rounded-md outline-0" name="" id="">
+            <option value="">CRM</option>
+            <option value="">ACC</option>
+            <option value="">GST</option>
+            <option value="">TDS</option>
+            <option value="">ITR</option>
+            <option value="">ROC</option>
+            <option value="">CMA</option>
+          </select>
+        </div>
       </div>
       <div className="font-medium">
         <h1>3:20 hrs</h1>
