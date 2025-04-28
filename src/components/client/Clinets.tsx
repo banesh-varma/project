@@ -1,7 +1,6 @@
 import { useState } from "react";
 import IndividualForm from "./IndividualForm";
 
-
 const all = [
   {
     id: 1,
@@ -67,8 +66,11 @@ const all = [
 
 const forms = ["Add New?", "Individual", "Firm", "HUF"]
 
+
 const Clinets = () => {
   const [isFormsBtnActive, setFormsBtnActive] = useState("Add New?")
+
+
   return (
       <div className="w-full">
         <div className="mx-2 flex items-center justify-between">
@@ -83,6 +85,9 @@ const Clinets = () => {
           </div>
         </div>
         <hr className=""/>
+        <div className="flex gap-2">
+
+          
         <div className="mx-2">
             {
               isFormsBtnActive === "Add New?" && 
@@ -127,6 +132,9 @@ const Clinets = () => {
               <div>HUF</div>
             }
         </div>  
+        
+         </div>
+
       </div>
   )
 }

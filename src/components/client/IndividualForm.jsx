@@ -1,5 +1,13 @@
 import { FormEvent, useState } from "react";
 
+import { IoMdContact, IoMdHome, IoMdTrash } from "react-icons/io";
+import { AiTwotoneBank } from "react-icons/ai";
+import { RiInfoCardFill } from "react-icons/ri";
+import { MdAppRegistration, MdChevronLeft, MdChevronRight, MdEdit, MdLocalPostOffice, MdMedicalInformation } from "react-icons/md";
+import { GiBank } from "react-icons/gi";
+import { IoBusiness, IoMail } from "react-icons/io5";
+import { CgProfile } from "react-icons/cg";
+
 const Label =({children}) => {
   return (
     <label className="text-base font-semibold">{children}</label>
@@ -147,6 +155,17 @@ const bankInfo = [
   },
 ]
 
+let childNavItem = [
+  {icon: <MdMedicalInformation/>, name:"G.Info"},
+  {name: "P.Info", icon: <CgProfile />},
+  {name: "I.Info", icon:<AiTwotoneBank />}, 
+  {name:"C.Info", icon:<IoMdContact />}, 
+  {name:"R.Info", icon:<IoMdHome/>}, 
+  {name:"B.Info", icon:<IoBusiness/>},
+  {name: "MSME", icon:<MdAppRegistration/>}, 
+  {name:"Bank", icon:<IoBusiness/>}]
+
+
 const Input = ({ children,placeholder,onChange, value, ...props }) => {
   return (
     <input
@@ -177,42 +196,32 @@ const IndividualForm = () => {
     isAgreed: false,
   });
 
+  const [childOPenClose, setChildOPenClose] = useState(true)
+  const [childActiveBtn, setChildActiveBtn] = useState("")
+
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     
       setFormData({
-      ...formData,          // Spread the existing form data
-      [name]: type === "checkbox" ? checked : value,  // Update the specific field
+      ...formData,
+      [name]: type === "checkbox" ? checked : value,
     });
 };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Form submitted:", formData);
-    // Add API submission logic here
   };
 
   return (
-    <div className="mt-2 p-2 shadow-2xl border-2 border-gray-100 rounded-2xl">
+    <div className={`mt-2 p-2 shadow-2xl border-2 border-gray-100 rounded-2xl flex gap-3 ${childOPenClose ?  "mr-14" : "mr-28"}`} >
       <div className="bg-white rounded-2xl  overflow-hidden">
-        {/* <div className="bg-blue-600 py-4 px-6">
-          <h1 className="text-2xl font-bold text-white">
-            Individual Registration Form
-          </h1>
-          <p className="text-blue-100 mt-1">
-            Please fill in your details.
-          </p>
-        </div> */}
-
         <form onSubmit={handleSubmit} className="p-2 space-y-3">
-
         <div className="space-y-1">
-          <div className="border-1 border-neutral-600 rounded-xl px-3 py-3 shadow-2xs">
-
+          <div id="G.Info" className={`border-1 ${childActiveBtn === "G.Info" ? "border-gray-200 bg-slate-50":"border-gray-100"}  rounded-xl px-3 py-3 shadow-2xs`}>
             <h1 className="font-semibold border-b border-gray-400 pb-1">
-              Group Details
+              Group Information (G.Info)
             </h1>
-
             <div className="flex flex-wrap gap-3 mt-2">
               <div className="flex flex-col w-34">
                 <Label>Client ID :</Label>
@@ -254,60 +263,61 @@ const IndividualForm = () => {
          </div> 
          </div>
 
-
-          <h1 className="font-semibold text-gray-800 border-b border-gray-400 pb-1">
-            Personal Details
-          </h1>
-          <div className=" mt-2 grid grid-cols-1 md:grid-cols-12 gap-5">
-            <div className="md:col-span-10 space-y-2">
-              
-              <div className="grid grid-cols-8 gap-2">
-                <h1></h1>
-                <h2 className="font-semibold ">Prefix</h2>
-                <h2 className="font-semibold col-span-2">First Name</h2>
-                <h2 className="font-semibold col-span-2">Middle Name</h2>
-                <h2 className="font-semibold col-span-2">Last Name</h2>
-              </div>
-
-              {personalDetails.map(person => (
-                <div className="grid grid-cols-8 gap-2 items-center">
-                <h2 className="font-semibold">{person.name}:</h2>
-
+          <div id="P.Info"  className={`${childActiveBtn === "P.Info" ? "border-gray-200 bg-slate-50":"border-gray-100"} rounded-xl px-3 py-3 shadow-2xs`}> 
+            <h1 className={`font-semibold text-gray-800 border-b border-gray-400 pb-1 `}>
+              Personal Information (P.Info)
+            </h1>
+            <div className=" mt-2 grid grid-cols-1 md:grid-cols-12 gap-5">
+              <div className="md:col-span-10 space-y-2">
                 
-                <div className="flex flex-col">
-                  <select className="border ">
-                    <option>Mr.</option>
-                    <option>Mrs.</option>
-                    <option>Ms.</option>
-                  </select>
+                <div className="grid grid-cols-8 gap-2">
+                  <h1></h1>
+                  <h2 className="font-semibold ">Prefix</h2>
+                  <h2 className="font-semibold col-span-2">First Name</h2>
+                  <h2 className="font-semibold col-span-2">Middle Name</h2>
+                  <h2 className="font-semibold col-span-2">Last Name</h2>
                 </div>
-                <input type="text" className="border col-span-2" />
-                <input type="text" className="border col-span-2" />
-                <input type="text" className="border col-span-2" />
-              </div>
-              ))}
-            </div>
 
-            <div className="border-1 mt-8  px-3 py-3=1.5  rounded-2xl md:col-span-2 flex flex-col items-center justify-center space-y-2">
-              <img 
-                src="http://ranjithsolutions.in/nspnco/2/assets/img/user/userd.png" 
-                alt="User Avatar"
-                className="w-24 h-24 rounded-full object-cover" 
-              />
-              <input 
-                type="file" 
-                className="border px-2 py-0.5 w-full text-sm file:border-2 file:border-[#8a8a8a] 
-         file:py-[0.2em] file:px-[0.4em] 
-         file:rounded-[0.2em] 
-         file:bg-gray-300 
-         file:transition-all file:duration-1000 hover:file:bg-[#757575]"
-              />
+                {personalDetails.map(person => (
+                  <div className="grid grid-cols-8 gap-2 items-center">
+                  <h2 className="font-semibold">{person.name}:</h2>
+
+                  
+                  <div className="flex flex-col">
+                    <select className="border ">
+                      <option>Mr.</option>
+                      <option>Mrs.</option>
+                      <option>Ms.</option>
+                    </select>
+                  </div>
+                  <input type="text" className="border col-span-2" />
+                  <input type="text" className="border col-span-2" />
+                  <input type="text" className="border col-span-2" />
+                </div>
+                ))}
+              </div>
+
+              <div className="border-1 mt-8  px-3 py-3=1.5  rounded-2xl md:col-span-2 flex flex-col items-center justify-center space-y-2">
+                <img 
+                  src="http://ranjithsolutions.in/nspnco/2/assets/img/user/userd.png" 
+                  alt="User Avatar"
+                  className="w-24 h-24 rounded-full object-cover" 
+                />
+                <input 
+                  type="file" 
+                  className="border px-2 py-0.5 w-full text-sm file:border-2 file:border-[#8a8a8a] 
+                    file:py-[0.2em] file:px-[0.4em] 
+                    file:rounded-[0.2em] 
+                    file:bg-gray-300 
+                    file:transition-all file:duration-1000 hover:file:bg-[#757575]"
+                />
+              </div>
             </div>
           </div>
-
-          <div>
+          
+          <div id="I.Info"   className={`${childActiveBtn === "I.Info" ? "border-gray-200 bg-slate-50":"border-gray-100"} rounded-xl px-3 py-3 shadow-2xs`}> 
             <h1 className=" font-semibold text-gray-800 border-b border-gray-400 pb-1">
-            Identity Information
+            Identity Information (I.Info)
             </h1>
             <ul className=" mt-2 grid grid-cols-8 gap-2">
               {identityInformation.map(eachId => (
@@ -319,8 +329,9 @@ const IndividualForm = () => {
             </ul>
 
           </div>
+          <div id="C.Info"   className={`${childActiveBtn === "C.Info" ? "border-gray-200 bg-slate-50":"border-gray-100"} rounded-xl px-3 py-3 shadow-2xs`}>
           <h1 className=" font-semibold text-gray-800 border-b border-gray-400 pb-1">
-          Communication
+          Communication Information (C.Info)
           </h1>
           <ul className="mt-2 flex gap-4">
             {communication.map(each => (
@@ -330,55 +341,65 @@ const IndividualForm = () => {
               </li>
             ))}
           </ul>
-          <h1 className=" font-semibold text-gray-800 border-b border-gray-400 pb-1">
-            Residential Address
-          </h1>
-            <ul className="mt-2 flex flex-wrap">
-              {residentialAddress.map(address => (
-                <li className="flex flex-col">
-                  <label>{address.name}</label>
-                  <input className="border-solid border-1 border-neutral-400 w-30 mr-1" type="text" />
-              </li>
-              ))}
-            </ul>
+          </div>
+          <div id="R.Info"   className={`${childActiveBtn === "R.Info" ? "border-gray-200 bg-slate-50":"border-gray-100"} rounded-xl px-3 py-3 shadow-2xs`}>
+            <h1 className=" font-semibold text-gray-800 border-b border-gray-400 pb-1">
+              Residential Information (R.Info)
+            </h1>
+              <ul className="mt-2 flex flex-wrap">
+                {residentialAddress.map(address => (
+                  <li className="flex flex-col">
+                    <label>{address.name}</label>
+                    <input className="border-solid border-1 border-neutral-400 w-30 mr-1" type="text" />
+                </li>
+                ))}
+              </ul>
+          </div>
+          <div id="B.Info"   className={`${childActiveBtn === "B.Info" ? "border-gray-200 bg-slate-50":"border-gray-100"} rounded-xl px-3 py-3 shadow-2xs`}>
           
-          <h1 className=" font-semibold text-gray-800 border-b border-gray-400 pb-1">
-          Business / Office Address
-          </h1>
-          <ul className="flex flex-wrap">
-          {residentialAddress.map(address => (
-                <li className="flex flex-col">
-                  <label>{address.name}</label>
-                  <input className="border-solid border-1 border-neutral-400 w-30 mr-1" type="text" />
-              </li>
-              ))}
-          </ul>
-          <h1 className=" font-semibold text-gray-800 border-b border-gray-400 pb-1">
-          MSME Info
-          </h1>
-          <div>
+            <h1 className=" font-semibold text-gray-800 border-b border-gray-400 pb-1">
+              Business / Office Information (B.Info)
+            </h1>
             <ul className="flex flex-wrap">
-              {msmeInfo.map(each => (
-                <li className="flex flex-col">
-                <label>{each.name}</label>
-                <input className="border-solid border-1 border-neutral-400 w-30 mr-1" type="text" />
-            </li>
-              ))}
+            {residentialAddress.map(address => (
+                  <li className="flex flex-col">
+                    <label>{address.name}</label>
+                    <input className="border-solid border-1 border-neutral-400 w-30 mr-1" type="text" />
+                </li>
+                ))}
             </ul>
           </div>
-          <h1 className=" font-semibold text-gray-800 border-b border-gray-400 pb-1">
-          Bank Info
-          </h1>
-            <ul className="flex flex-wrap">
-              {bankInfo.map(each => (
-                <li className="flex flex-col">
-                <label>{each.name}</label>
-                <input className="border-solid border-1 border-neutral-400 w-30 mr-1" type="text" />
-            </li>
-              ))}
-            </ul>
 
-            <div className="flex justify-end">
+          <div id="MSME"   className={`${childActiveBtn === "MSME" ? "border-gray-200 bg-slate-50":"border-gray-100"} rounded-xl px-3 py-3 shadow-2xs`}>
+
+            <h1 className=" font-semibold text-gray-800 border-b border-gray-400 pb-1">
+              MSME Information 
+            </h1>
+            <div>
+              <ul className="flex flex-wrap">
+                {msmeInfo.map(each => (
+                  <li className="flex flex-col">
+                  <label>{each.name}</label>
+                  <input className="border-solid border-1 border-neutral-400 w-30 mr-1" type="text" />
+              </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          <div id="Bank" className={`${childActiveBtn === "Bank" ? "border-gray-200 bg-slate-50":"border-gray-100"} rounded-xl px-3 py-3 shadow-2xs`}>
+            <h1 className="font-semibold text-gray-800 border-b border-gray-400 pb-1">
+            Bank Information
+            </h1>
+              <ul className="flex flex-wrap">
+                {bankInfo.map(each => (
+                  <li className="flex flex-col">
+                  <label>{each.name}</label>
+                  <input className="border-solid border-1 border-neutral-400 w-30 mr-1" type="text" />
+              </li>
+                ))}
+              </ul>
+            </div>
+          <div className="flex justify-end">
             <button
               type="submit"
               className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
@@ -388,6 +409,17 @@ const IndividualForm = () => {
           </div>
         </form>
       </div>
+      <ul onMouseEnter={()=>setChildOPenClose(false)} onMouseLeave={()=>setChildOPenClose(true)}  className={`${!childOPenClose ? "min-w-28" : "min-w-14"} bg-white fixed right-16 flex flex-col gap-2 border-l-1 h-screen pt-4 transition-all duration-300 ease-in-out`}>
+           <button type="button" onClick={()=>setChildOPenClose(!childOPenClose)} className={`mx-auto px-2 w-10 bg-blue-800 p-1 text-white outline-0 rounded hover:bg-blue-600 hover:scale-105 text-2xl transition-all duration-300 ease-in-out`}>{childOPenClose ? <MdChevronLeft/> : <MdChevronRight/>}</button>
+           {
+             childNavItem.map((eachNav, id) => <li onClick={()=>setChildActiveBtn(eachNav.name)} title={eachNav.name}  className={`${childActiveBtn === eachNav?.name ? "text-black bg-blue-300/50 hover:text-black hover:bg-white scale-105 " : ""}  transition-all mx-1.5 hover:text-black hover:bg-blue-300/50 px-2.5 py-2 border-b-2 border-amber-950 hover:scale-105 `} key={id}>
+                <a href={`#${eachNav.name}`} className="flex gap-2 items-center">
+                  <span className="text-xl size-6 cursor-pointer">{eachNav?.icon}</span> <span className={`${childOPenClose && "hidden"} text-sm transition-all duration-700 ease-in-out`}>{eachNav.name}</span>
+                </a>
+              </li>
+              )
+           }
+         </ul>
     </div>
   );
 };
