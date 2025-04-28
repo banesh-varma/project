@@ -101,6 +101,7 @@ const LeftNav = () => {
         useEffect(() => {
           function handleResize() {
             let x = window.innerWidth
+            console.log(x)
             if(x <= 1000) {
                 changeIsOpen(false)
             }
@@ -111,11 +112,10 @@ const LeftNav = () => {
       
           window.addEventListener('resize', handleResize);
       
-          // Cleanup function to remove the event listener when the component unmounts
           return () => {
             window.removeEventListener('resize', handleResize);
           };
-        }, []); // Empty dependency array means this effect runs only once on mount and once on unmount
+        }, []); 
       }
 
     useWindowWidth() 

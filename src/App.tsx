@@ -6,8 +6,18 @@ import LeftNav from './components/LeftNav'
 import RightNavBar from './components/RightNavBar'
 import DashBoard from './components/DashBoard'
 import Clinets from './components/client/Clinets'
+import { useEffect } from 'react'
 
 function App() {
+  useEffect(() => {
+    // Set zoom level when the component mounts
+    document.body.style.zoom = "90%";
+
+    // Optional: Cleanup if necessary
+    return () => {
+      document.body.style.zoom = "100%"; // Reset on unmount
+    };
+  }, []);
   return (
     <div className='h-screen w-full'>
       <Header/>
