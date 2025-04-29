@@ -69,16 +69,15 @@ const communication = [
 ]
 const residentialAddress = [
   {
-    name: "Set Status :"
+    name: "Address Type:",
+    inputType: "select",
   },
   {
-    name: "Address Type :"
+    name: "Pincode :",
   },
   {
-    name: "Pincode :"
-  },
-  {
-    name: "State :"
+    name: "State :",
+    inputType: "select",
   },
   {
     name: "H.No :"
@@ -90,10 +89,12 @@ const residentialAddress = [
     name: "Area :"
   },
   {
-    name: "Country :"
+    name: "Country :",
+    inputType: "select",
   },
   {
-    name: "District :"
+    name: "District :",
+    inputType: "select",
   },
   {
     name: "Building Name :"
@@ -263,29 +264,28 @@ const IndividualForm = () => {
             <div className=" mt-2 grid grid-cols-1 md:grid-cols-12 gap-5">
               <div className="md:col-span-10 space-y-1">
                 
-                <div className="grid grid-cols-11 gap-1">
+                <div className="grid grid-cols-11 gap-2">
                   <h1></h1>
-                  <h2 className="font-semibold ">Prefix</h2>
+                  <h2 className="font-semibold">Prefix</h2>
                   <h2 className="font-semibold col-span-3">First Name</h2>
                   <h2 className="font-semibold col-span-3">Middle Name</h2>
                   <h2 className="font-semibold col-span-3">Last Name</h2>
                 </div>
 
                 {personalDetails.map(person => (
-                  <div className="grid grid-cols-11 gap-2 items-center">
+                  <div className="grid grid-cols-11 gap-1 mb-1 items-center">
                   <h2 className="font-semibold">{person.name}:</h2>
 
-                  
                   <div className="flex flex-col">
-                    <select className="border  p-1 ">
+                    <select className="border p-1">
                       <option>Mr.</option>
                       <option>Mrs.</option>
                       <option>Ms.</option>
                     </select>
                   </div>
-                  <input type="text" className="border col-span-3 p-1" />
-                  <input type="text" className="border col-span-3 p-1 " />
-                  <input type="text" className="border col-span-3 p-1" />
+                  <input type="text" className="border p-1 col-span-3" />
+                  <input type="text" className="border p-1 col-span-3" />
+                  <input type="text" className="border p-1 col-span-3" />
                 </div>
                 ))}
               </div>
@@ -312,11 +312,11 @@ const IndividualForm = () => {
             <h1 className=" font-semibold text-gray-800 border-b border-gray-400 pb-1">
             Identity Information (I.Info)
             </h1>
-            <ul className=" mt-2 grid grid-cols-8 gap-2">
+            <ul className=" mt-2 ">
               {identityInformation.map(eachId => (
-                <li className="flex flex-col">
-                  <label className="font-semibold">{eachId.name}</label>
-                  <input className="mr-1  mt-2 border" type="text" />
+                <li className="items-center w-80 flex flex-row">
+                  <label className="min-w-30 font-semibold">{eachId.name}</label>
+                  <input className="w-full p-1 mt-1 border" type="text" />
                 </li>
               ))}
             </ul>
@@ -326,11 +326,12 @@ const IndividualForm = () => {
           <h1 className=" font-semibold text-gray-800 border-b border-gray-400 pb-1">
           Communication Information (C.Info)
           </h1>
-          <ul className="mt-2 flex gap-4">
+          
+          <ul className="mt-2 gap-4">
             {communication.map(each => (
-              <li className="flex items-start gap-3">
+              <li className="flex flex-col items-start">
                 <label >{each.name}</label>
-                <input className="border w-40 " type="text" />
+                <input className="border w-40 p-1 " type="text" />
               </li>
             ))}
           </ul>
@@ -343,8 +344,25 @@ const IndividualForm = () => {
                 {residentialAddress.map(address => (
                   <li className="flex flex-col">
                     <label>{address.name}</label>
-                    <input className="border-solid border-1 border-neutral-400 w-30 mr-1" type="text" />
-                </li>
+                    {address?.inputType? (
+                      <select className="border-solid border-1 border-neutral-400 w-30 mr-1">
+                        <option>Select</option>
+                        {address.name === "Address Type:"?
+                        <>
+                        <option>Head Office/ Principle place of Business</option>
+                        <option>Registered Office</option>
+                        <option>Business</option>
+                        <option>Present Address (Correspondence)</option>
+                        <option>Godown</option>
+                        <option>Factory</option>
+                        <option>Branch Address</option>
+                        <option>Other Address</option>
+                        </>: ''}
+                      </select>
+                    ) : (
+                      <input className="border-solid border-1 border-neutral-400 w-30 mr-1" type="text" />
+                    )}
+                  </li>
                 ))}
               </ul>
           </div>
