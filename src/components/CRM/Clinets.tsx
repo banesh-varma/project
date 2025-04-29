@@ -93,7 +93,7 @@ const Clinets = () => {
 
   return (
       <div className="flex gap-2 ">
-        <div className="w-full">
+        <div className="w-full h-[103vh] overflow-y-auto">
           <div className="flex items-center justify-between px-3">
             <h1 className="text-2xl font-semibold">Clients : <span className="text-lg">{isFormsBtnActive === "Add New?" ? "All Clients" : isFormsBtnActive}</span></h1>
             <div className="flex items-center justify-between">
