@@ -15,81 +15,81 @@ const navItems = [
     {
         name: "Dashboard",
         icon: <MdOutlineDashboard/>,
-        link: "/",
+        link: "/crm",
     },
     {
         name: "Settings",
         icon: <MdOutlineSettings/>,
-        link: "/settings",
+        link: "crm/settings",
     },
     {
         name: "Services",
         icon: <MdDesignServices/>,
-        link: "/services",
+        link: "crm/services",
     },
     {
         name: "PayRoll",
         icon: <SlPaypal/>,
-        link: "/payRoll",
+        link: "crm/payRoll",
     },
     {
         name: "Professionals",
         icon: <SiLinuxprofessionalinstitute/>,
-        link: "/professionals",
+        link: "crm/professionals",
     },
     {
         name: "Consultants",
-        link: "/consultants",
+        link: "crm/consultants",
         icon: <MdOutlineDashboard />
     },
     {
         name: "Clients",
-        link: "/clients",
+        link: "crm/clients",
         icon: <MdOutlineSettings />
     },
     {
         name: "Tasks",
-        link: "/tasks",
+        link: "crm/tasks",
         icon: <MdDesignServices />
     },
     {
         name: "Inward/Outward",
-        link: "/inward-outward",
+        link: "crm/inward-outward",
         icon: <MdOutlineDashboard />
     },
     {
         name: "Requests",
-        link: "/requests",
+        link: "crm/requests",
         icon: <SlPaypal />
     },
     {
         name: "Calls",
-        link: "/calls",
+        link: "crm/calls",
         icon: <MdOutlineDashboard />
     },
     {
         name: "Chats",
-        link: "/chats",
+        link: "crm/chats",
         icon: <SiLinuxprofessionalinstitute />
     },
     {
         name: "Whatsup",
-        link: "/whatsup",
+        link: "crm/whatsup",
         icon: <MdOutlineDashboard />
     },
     {
         name: "Email",
-        link: "/email",
+        link: "crm/email",
         icon: <MdOutlineSettings />
     },
     {
         name: "Accounts",
-        link: "/accounts",
+        link: "crm/accounts",
         icon: <SlPaypal />
     },
     {
         name: "Reports",
-        link: "/reports",
+        link: "crm/reports",
         icon: <SiLinuxprofessionalinstitute />
     },
 ]
