@@ -72,7 +72,7 @@ const Clinets = () => {
 
 
   return (
-      <div className="w-full">
+      <div className="w-full h-full overflow-auto">
         <div className="mx-2 flex items-center justify-between">
           <h1 className="text-2xl font-semibold">Clients : <span className="text-lg">{isFormsBtnActive === "Add New?" ? "All Clients" : isFormsBtnActive}</span></h1>
           <div className="flex items-center justify-between">

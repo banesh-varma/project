@@ -270,7 +270,7 @@ const IndividualForm = () => {
             <div className=" mt-2 grid grid-cols-1 md:grid-cols-12 gap-5">
               <div className="md:col-span-10 space-y-2">
                 
-                <div className="grid grid-cols-8 gap-2">
+                <div className="grid grid-cols-12 gap-2">
                   <h1></h1>
                   <h2 className="font-semibold ">Prefix</h2>
                   <h2 className="font-semibold col-span-2">First Name</h2>

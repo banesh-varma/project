@@ -22,10 +22,10 @@ function App() {
     <div className='h-screen w-full'>
       <Header/>
       <BrowserRouter>
-        <div className='min-h-[90vh] w-full flex justify-between'>
-          <div className='flex w-full'>
+        <div className='h-[103vh] w-full flex justify-between overflow-auto'>
+          <div className='flex w-full h-dvh'>
             <LeftNav/>
-            <div className='w-full'>
+            <div className='w-full max-h-full'>
             <Routes>
               <Route path='/' element={<DashBoard/>}/>
               <Route path='/settings' element={<DashBoard/>}/>
