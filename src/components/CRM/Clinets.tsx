@@ -161,7 +161,7 @@ const Clinets = () => {
               <button type="button" onClick={()=>dispath(setChildOPenClose(!childOPenClose))} className={`ml-auto mr-2.5 bg-blue-800 p-1 text-white outline-0 rounded hover:bg-blue-600 hover:scale-105 text-2xl transition-all duration-300 ease-in-out`}>{childOPenClose ? <MdChevronLeft/> : <MdChevronRight/>}</button>
               <hr className="!mx-1"/>
               {
-                childNavItem.map((eachNav, id) => <li onClick={()=> dispath(setChildActiveBtn(eachNav.name))} title={eachNav.name}  className={`${childActiveBtn === eachNav?.name ? "text-black bg-blue-300/50 hover:text-black hover:bg-white scale-105 " : ""}  transition-all mx-1.5 hover:text-black hover:bg-blue-300/50 px-2.5 py-2 border-b-2 border-amber-950 hover:scale-105 `} key={id}>
+                childNavItem.map((eachNav, id) => <li onClick={()=> dispath(setChildActiveBtn(eachNav.name))} title={eachNav.name}  className={`${childActiveBtn === eachNav?.name ? "text-black bg-blue-300/50 hover:text-black hover:bg-white scale-105 " : ""}  transition-all mx-1.5 hover:text-black hover:bg-blue-300/50 px-2.5 py-1 border-b-2 border-amber-950 hover:scale-105 `} key={id}>
                   <a href={`#${eachNav.name}`} className="flex gap-2 items-center">
                     <span className="text-xl size-6 cursor-pointer">{eachNav?.icon}</span> <span className={`${childOPenClose && "hidden"} text-sm transition-all duration-700 ease-in-out`}>{eachNav.name}</span>
                   </a>
