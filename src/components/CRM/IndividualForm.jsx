@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 const Label =({children}) => {
   return (
-    <label className="text-base font-semibold">{children}</label>
+    <label className="">{children}</label>
   )
 }
 
@@ -69,27 +69,21 @@ const communication = [
 ]
 const residentialAddress = [
   {
-    name: "Address Type:",
-    inputType: "select",
+    name: "Address Title:",
+  },
+  {
+    name: "Address Type :",
+    radioType: "residentialType",
   },
   {
     name: "Pincode :",
   },
   {
-    name: "State :",
+    name: "Country :",
     inputType: "select",
   },
   {
-    name: "H.No :"
-  },
-  {
-    name: "Street :"
-  },
-  {
-    name: "Area :"
-  },
-  {
-    name: "Country :",
+    name: "State :",
     inputType: "select",
   },
   {
@@ -97,16 +91,82 @@ const residentialAddress = [
     inputType: "select",
   },
   {
-    name: "Building Name :"
+    name: "H.No :"
   },
   {
-    name: "Colony :"
+    name: "Building Name :",
+  },
+  {
+    name: "Street :",
+  },
+  {
+    name: "Area :"
   },
   {
     name: "LandMark :"
   },
   {
-    name: "Colony :"
+    name: "City/Town :"
+  },
+  {
+    name: "Longitude :"
+  },
+  {
+    name: "Latitude :"
+  },
+]
+const BusinessAddress = [
+  {
+    name: "Business Name :",
+  },
+  {
+    name: "GSTN :",
+  },
+  {
+    name: "Address Title :",
+  },
+  {
+    name: "Address Type :",
+    radioType: "BusinessStatus",
+  },
+  {
+    name: "Pincode :",
+  },
+  {
+    name: "Country :",
+    inputType: "select",
+  },
+  {
+    name: "State :",
+    inputType: "select",
+  },
+  {
+    name: "District :",
+    inputType: "select",
+  },
+  {
+    name: "H.No :"
+  },
+  {
+    name: "Building Name :",
+  },
+  {
+    name: "Street :",
+  },
+  {
+    name: "Area :"
+  },
+  {
+    name: "LandMark :"
+  },
+  {
+    name: "City/Town :"
+  },
+  {
+    name: "Longitude :"
+  },
+  {
+    name: "Latitude :"
   },
 ]
 
@@ -266,15 +326,15 @@ const IndividualForm = () => {
                 
                 <div className="grid grid-cols-11 gap-2">
                   <h1></h1>
-                  <h2 className="font-semibold">Prefix</h2>
-                  <h2 className="font-semibold col-span-3">First Name</h2>
-                  <h2 className="font-semibold col-span-3">Middle Name</h2>
-                  <h2 className="font-semibold col-span-3">Last Name</h2>
+                  <h2 className="">Prefix</h2>
+                  <h2 className="col-span-3">First Name</h2>
+                  <h2 className="col-span-3">Middle Name</h2>
+                  <h2 className="col-span-3">Last Name</h2>
                 </div>
 
                 {personalDetails.map(person => (
                   <div className="grid grid-cols-11 gap-1 mb-1 items-center">
-                  <h2 className="font-semibold">{person.name}:</h2>
+                  <h2 className="">{person.name}:</h2>
 
                   <div className="flex flex-col">
                     <select className="border p-1">
@@ -315,7 +375,7 @@ const IndividualForm = () => {
             <ul className=" mt-2 ">
               {identityInformation.map(eachId => (
                 <li className="items-center w-80 flex flex-row">
-                  <label className="min-w-30 font-semibold">{eachId.name}</label>
+                  <label className="min-w-30">{eachId.name}</label>
                   <input className="w-full p-1 mt-1 border" type="text" />
                 </li>
               ))}
@@ -337,17 +397,28 @@ const IndividualForm = () => {
           </ul>
           </div>
           <div id="R.Info"   className={`${childActiveBtn === "R.Info" ? "border-gray-200 bg-slate-50":"border-gray-100"} rounded-xl px-3 py-3 shadow-2xs`}>
-            <h1 className=" font-semibold text-gray-800 border-b border-gray-400 pb-1">
-              Residential Information (R.Info)
-            </h1>
-              <ul className="mt-2 flex flex-wrap">
+            <div className="border-b border-gray-400 flex justify-between">
+              <h1 className=" font-semibold text-gray-800  pb-1">
+                Residential Information (R.Info)
+              </h1>
+              <div className="flex gap-2">
+                <button className="bg-blue-200 px-2 rounded hover:bg-blue-300 hover:border text-sm">Active</button>
+                <button className="bg-blue-200 px-2 rounded hover:bg-blue-300 text-sm hover:border">Inactive</button>
+                <button className="bg-blue-200 px-2 rounded hover:bg-blue-300 text-sm hover:border">Add</button>
+                <button className="bg-blue-200 px-2 rounded hover:bg-blue-300 text-sm hover:border">Edit</button>
+                <button className="bg-blue-200 px-2 rounded hover:bg-blue-300 text-sm hover:border">Delete</button>
+                <button className="bg-blue-200 px-2 rounded hover:bg-blue-300 text-sm hover:border">Save</button>
+              </div>
+            </div>
+            <div className="grid grid-cols-12 w-full">
+              <ul className="mt-2 grid grid-cols-2 col-span-6 gap-1 gap-x-5">
                 {residentialAddress.map(address => (
-                  <li className="flex flex-col">
-                    <label>{address.name}</label>
+                  <li className="flex">
+                    <label className="min-w-30">{address.name}</label>
                     {address?.inputType? (
-                      <select className="border-solid border-1 border-neutral-400 w-30 mr-1">
+                      <select className="w-full p-1 border">
                         <option>Select</option>
-                        {address.name === "Address Type:"?
+                        {address.name === "Address Type:"&&
                         <>
                         <option>Head Office/ Principle place of Business</option>
                         <option>Registered Office</option>
@@ -357,28 +428,78 @@ const IndividualForm = () => {
                         <option>Factory</option>
                         <option>Branch Address</option>
                         <option>Other Address</option>
-                        </>: ''}
+                        </>}
                       </select>
-                    ) : (
-                      <input className="border-solid border-1 border-neutral-400 w-30 mr-1" type="text" />
-                    )}
+                    ) : address?.radioType ? (
+                      <div className="flex gap-4 text-center">
+                      <div>
+                        <input type="radio" name={address.radioType} id={address.radioType} />
+                        <label htmlFor={address.radioType}>Active</label>
+                      </div>
+                      <div>
+                        <input type="radio" name={address.radioType} id={`address.radioType1`} />
+                        <label htmlFor={`address.radioType1`}>Inactive</label>
+                      </div>
+                      </div>
+                    ) : 
+                      (<input className="w-full p-1 border" type="text" />)
+                    }
                   </li>
                 ))}
               </ul>
+            </div>
           </div>
           <div id="B.Info"   className={`${childActiveBtn === "B.Info" ? "border-gray-200 bg-slate-50":"border-gray-100"} rounded-xl px-3 py-3 shadow-2xs`}>
-          
-            <h1 className=" font-semibold text-gray-800 border-b border-gray-400 pb-1">
+          <div className="border-b border-gray-400 flex justify-between">
+            <h1 className="font-semibold text-gray-800 border-b border-gray-400 pb-1">
               Business / Office Information (B.Info)
             </h1>
-            <ul className="flex flex-wrap">
-            {residentialAddress.map(address => (
-                  <li className="flex flex-col">
-                    <label>{address.name}</label>
-                    <input className="border-solid border-1 border-neutral-400 w-30 mr-1" type="text" />
-                </li>
-                ))}
-            </ul>
+            <div className="flex gap-2">
+                <button className="bg-blue-200 px-2 rounded hover:bg-blue-300 hover:border text-sm">Active</button>
+                <button className="bg-blue-200 px-2 rounded hover:bg-blue-300 text-sm hover:border">Inactive</button>
+                <button className="bg-blue-200 px-2 rounded hover:bg-blue-300 text-sm hover:border">Add</button>
+                <button className="bg-blue-200 px-2 rounded hover:bg-blue-300 text-sm hover:border">Edit</button>
+                <button className="bg-blue-200 px-2 rounded hover:bg-blue-300 text-sm hover:border">Delete</button>
+                <button className="bg-blue-200 px-2 rounded hover:bg-blue-300 text-sm hover:border">Save</button>
+              </div>
+            </div>
+            <div className="grid grid-cols-12 w-full">
+              <ul className="mt-2 grid grid-cols-2 col-span-6 gap-1 gap-x-5">
+              {BusinessAddress.map(address => (
+                    <li className="flex">
+                      <label className="min-w-30">{address.name}</label>
+                      {address?.inputType? (
+                      <select className="w-full p-1 border">
+                        <option>Select</option>
+                        {address.name === "Address Type:"&&
+                        <>
+                        <option>Head Office/ Principle place of Business</option>
+                        <option>Registered Office</option>
+                        <option>Business</option>
+                        <option>Present Address (Correspondence)</option>
+                        <option>Godown</option>
+                        <option>Factory</option>
+                        <option>Branch Address</option>
+                        <option>Other Address</option>
+                        </>}
+                      </select>
+                    ) : address?.radioType ? (
+                      <div className="flex gap-1 text-center">
+                      <div>
+                        <input type="radio" name="radioGroup" id="activeAddressType" />
+                        <label htmlFor="activeAddressType">Active</label>
+                      </div>
+                      <div>
+                        <input type="radio" name="radioGroup" id="InactiveAddressType" />
+                        <label htmlFor="InactiveAddressType">Inactive</label>
+                      </div>
+                      </div>
+                    ) : 
+                      (<input className="w-full p-1 border" type="text" />)}
+                  </li>
+                  ))}
+              </ul>
+            </div>
           </div>
 
           <div id="MSME"   className={`${childActiveBtn === "MSME" ? "border-gray-200 bg-slate-50":"border-gray-100"} rounded-xl px-3 py-3 shadow-2xs`}>
