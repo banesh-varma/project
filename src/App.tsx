@@ -7,6 +7,7 @@ import Clinets from './components/CRM/Clinets'
 import { useEffect } from 'react'
 import AllClients from './components/ITR/allClientsPage'
 import CrmLayout from './components/CRM/CrmLayout'
+import EachClientData from './components/ITR/eachClientData'
 
 function App() {
   useEffect(() => {
@@ -43,6 +44,7 @@ function App() {
               <Route path='reports' element={<DashBoard />} />
             </Route>
           <Route path="itr/" element={<AllClients/>}/>
+          <Route path="clients/:id" element={<EachClientData/>}/>
         </Routes>
       </BrowserRouter>
     </div>

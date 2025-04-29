@@ -11,10 +11,9 @@ const Header = () => {
         <div className="bg-white mx-4 text-black border-1 border-solid border-black px-4 border-b-0">
         <select
           className="p-4 px-5 rounded-md outline-0"
-          onChange={(e) => navigate(`/${e.target.value}`)}
+          onChange={(e) => navigate(`/${(e.target.value).toLowerCase()}`)}
           defaultValue=""
         >
-          <option value="" disabled>Select a route</option>
           {
             listRoutings.map(each => (
               <option  key={each} value={each}>
