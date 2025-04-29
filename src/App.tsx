@@ -23,9 +23,9 @@ function App() {
       <Header/>
       <BrowserRouter>
         <div className='h-[103vh] w-full flex justify-between overflow-auto'>
-          <div className='flex w-full h-dvh'>
+          <div className='flex w-full'>
             <LeftNav/>
-            <div className='w-full max-h-full'>
+            <div className='w-full max-h-full overflow-auto'>
             <Routes>
               <Route path='/' element={<DashBoard/>}/>
               <Route path='/settings' element={<DashBoard/>}/>

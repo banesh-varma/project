@@ -54,7 +54,7 @@ const RightNavBar = () => {
     const displayIcon = isOpen ? <MdChevronRight className="text-xl size-6 cursor-pointer"  />
     : <MdChevronLeft className="text-xl size-6 cursor-pointer"/>
   return (
-    <div onMouseEnter={()=>changeIsOpen(true)} onMouseLeave={()=>changeIsOpen(false)}  className={`${isOpen? "min-w-50": "min-w-15"} z-10 bg-gray-50 p-2 border-gr border-l-1 transition-all duration-200 ease-in-out`}>
+    <div className={`${isOpen? "min-w-50": "min-w-15"} bg-gray-50 p-2 border-gr border-l-1 transition-all duration-200 ease-in-out`}>
         <div className="flex justify-end mr-2">
             <button onClick={() => changeIsOpen(!isOpen)}  className={`${isOpen ? "left-46" : "left-11"} cursor-pointer outline-0  bg-blue-800 text-white rounded-md p-1 hover:bg-blue-600 hover:scale-105 transition-all duration-200 ease-in-out mb-2`}>
                     {displayIcon}

@@ -7,6 +7,7 @@ import { MdAppRegistration, MdChevronLeft, MdChevronRight, MdEdit, MdLocalPostOf
 import { GiBank } from "react-icons/gi";
 import { IoBusiness, IoMail } from "react-icons/io5";
 import { CgProfile } from "react-icons/cg";
+import { useDispatch, useSelector } from "react-redux";
 
 const Label =({children}) => {
   return (
@@ -155,16 +156,6 @@ const bankInfo = [
   },
 ]
 
-let childNavItem = [
-  {icon: <MdMedicalInformation/>, name:"G.Info"},
-  {name: "P.Info", icon: <CgProfile />},
-  {name: "I.Info", icon:<AiTwotoneBank />}, 
-  {name:"C.Info", icon:<IoMdContact />}, 
-  {name:"R.Info", icon:<IoMdHome/>}, 
-  {name:"B.Info", icon:<IoBusiness/>},
-  {name: "MSME", icon:<MdAppRegistration/>}, 
-  {name:"Bank", icon:<IoBusiness/>}]
-
 
 const Input = ({ children,placeholder,onChange, value, ...props }) => {
   return (
@@ -178,6 +169,10 @@ const Input = ({ children,placeholder,onChange, value, ...props }) => {
 };
 
 const IndividualForm = () => {
+  const {childActiveBtn, childOPenClose} = useSelector((state) => state?.rightCLientsNavbar)
+  console.log(childActiveBtn, childOPenClose);
+  
+  
   const [formData, setFormData] = useState({
     fullName: "",
     dob: "",
@@ -196,8 +191,6 @@ const IndividualForm = () => {
     isAgreed: false,
   });
 
-  const [childOPenClose, setChildOPenClose] = useState(true)
-  const [childActiveBtn, setChildActiveBtn] = useState("")
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -214,7 +207,7 @@ const IndividualForm = () => {
   };
 
   return (
-    <div className={`mt-2 p-2 shadow-2xl border-2 border-gray-100 rounded-2xl flex gap-3 ${childOPenClose ?  "mr-14" : "mr-28"}`} >
+    <div className={`mt-2 p-2 shadow-2xl border-2 border-gray-100 rounded-2xl flex gap-3`} >
       <div className="bg-white rounded-2xl  overflow-hidden">
         <form onSubmit={handleSubmit} className="p-2 space-y-3">
         <div className="space-y-1">
@@ -268,31 +261,31 @@ const IndividualForm = () => {
               Personal Information (P.Info)
             </h1>
             <div className=" mt-2 grid grid-cols-1 md:grid-cols-12 gap-5">
-              <div className="md:col-span-10 space-y-2">
+              <div className="md:col-span-10 space-y-1">
                 
-                <div className="grid grid-cols-12 gap-2">
+                <div className="grid grid-cols-11 gap-1">
                   <h1></h1>
                   <h2 className="font-semibold ">Prefix</h2>
-                  <h2 className="font-semibold col-span-2">First Name</h2>
-                  <h2 className="font-semibold col-span-2">Middle Name</h2>
-                  <h2 className="font-semibold col-span-2">Last Name</h2>
+                  <h2 className="font-semibold col-span-3">First Name</h2>
+                  <h2 className="font-semibold col-span-3">Middle Name</h2>
+                  <h2 className="font-semibold col-span-3">Last Name</h2>
                 </div>
 
                 {personalDetails.map(person => (
-                  <div className="grid grid-cols-8 gap-2 items-center">
+                  <div className="grid grid-cols-11 gap-2 items-center">
                   <h2 className="font-semibold">{person.name}:</h2>
 
                   
                   <div className="flex flex-col">
-                    <select className="border ">
+                    <select className="border  p-1 ">
                       <option>Mr.</option>
                       <option>Mrs.</option>
                       <option>Ms.</option>
                     </select>
                   </div>
-                  <input type="text" className="border col-span-2" />
-                  <input type="text" className="border col-span-2" />
-                  <input type="text" className="border col-span-2" />
+                  <input type="text" className="border col-span-3 p-1" />
+                  <input type="text" className="border col-span-3 p-1 " />
+                  <input type="text" className="border col-span-3 p-1" />
                 </div>
                 ))}
               </div>
@@ -409,17 +402,7 @@ const IndividualForm = () => {
           </div>
         </form>
       </div>
-      <ul onMouseEnter={()=>setChildOPenClose(false)} onMouseLeave={()=>setChildOPenClose(true)}  className={`${!childOPenClose ? "min-w-28" : "min-w-14"} bg-white fixed right-16 flex flex-col gap-2 border-l-1 h-screen pt-4 transition-all duration-300 ease-in-out`}>
-           <button type="button" onClick={()=>setChildOPenClose(!childOPenClose)} className={`mx-auto px-2 w-10 bg-blue-800 p-1 text-white outline-0 rounded hover:bg-blue-600 hover:scale-105 text-2xl transition-all duration-300 ease-in-out`}>{childOPenClose ? <MdChevronLeft/> : <MdChevronRight/>}</button>
-           {
-             childNavItem.map((eachNav, id) => <li onClick={()=>setChildActiveBtn(eachNav.name)} title={eachNav.name}  className={`${childActiveBtn === eachNav?.name ? "text-black bg-blue-300/50 hover:text-black hover:bg-white scale-105 " : ""}  transition-all mx-1.5 hover:text-black hover:bg-blue-300/50 px-2.5 py-2 border-b-2 border-amber-950 hover:scale-105 `} key={id}>
-                <a href={`#${eachNav.name}`} className="flex gap-2 items-center">
-                  <span className="text-xl size-6 cursor-pointer">{eachNav?.icon}</span> <span className={`${childOPenClose && "hidden"} text-sm transition-all duration-700 ease-in-out`}>{eachNav.name}</span>
-                </a>
-              </li>
-              )
-           }
-         </ul>
+      
     </div>
   );
 };
