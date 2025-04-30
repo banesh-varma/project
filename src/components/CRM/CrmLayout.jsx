@@ -1,8 +1,11 @@
+import Header from "../Header";
 import LeftNav from "../LeftNav";
 import RightNavBar from "../RightNavBar";
 import { Outlet } from 'react-router-dom';
 
 const CrmLayout = () => (
+  <>
+      <Header/>
     <div className='h-[103vh] w-full flex justify-between overflow-auto'>
       <LeftNav />
       <div className='w-full max-h-full overflow-auto'>
@@ -10,6 +13,7 @@ const CrmLayout = () => (
       </div>
       <RightNavBar />
     </div>
+  </>
   );
   
   export default CrmLayout;

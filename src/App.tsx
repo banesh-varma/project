@@ -8,6 +8,7 @@ import { useEffect } from 'react'
 import AllClients from './components/ITR/allClientsPage'
 import CrmLayout from './components/CRM/CrmLayout'
 import EachClientData from './components/ITR/eachClientData'
+import LoginWithCarousel from './landingPage'
 
 function App() {
   useEffect(() => {
@@ -22,9 +23,10 @@ function App() {
   return (
     <div className='h-screen w-full'>
       <BrowserRouter>
-      <Header/>
+      
         <Routes>
             {/* CRM routes wrapped in layout */}
+            <Route path='/' element={<LoginWithCarousel />} />
             <Route path='/crm' element={<CrmLayout />}>
               <Route index element={<DashBoard />} />
               <Route path='settings' element={<DashBoard />} />

@@ -1,4 +1,5 @@
 import { FormEvent, useState } from "react";
+import { CiImport } from "react-icons/ci";
 
 import { IoMdContact, IoMdHome, IoMdTrash } from "react-icons/io";
 import { AiTwotoneBank } from "react-icons/ai";
@@ -116,18 +117,20 @@ const residentialAddress = [
   },
 ]
 const BusinessAddress = [
+  // {
+  //   name: "Business Name :",
+  //   full:"",
+  // },
+  // {
+  //   name: "GSTN :",
+  //   full:"",
+  // },
   {
-    name: "Business Name :",
-  },
-  {
-    name: "GSTN :",
-  },
-  {
-    name: "Address Title :",
-  },
+      name: "Address Title :",
+      full:"",
+    },
   {
     name: "Address Type :",
-    radioType: "BusinessStatus",
   },
   {
     name: "Pincode :",
@@ -455,7 +458,7 @@ const IndividualForm = () => {
               Business / Office Information (B.Info)
             </h1>
             <div className="flex gap-2">
-                <button className="bg-blue-200 px-2 rounded hover:bg-blue-300 hover:border text-sm">Active</button>
+                <button className="bg-neutral-100 px-2 rounded hover:border-t hover:border-l hover:border-r hover:bg-neutral-300 text-sm">Active</button>
                 <button className="bg-blue-200 px-2 rounded hover:bg-blue-300 text-sm hover:border">Inactive</button>
                 <button className="bg-blue-200 px-2 rounded hover:bg-blue-300 text-sm hover:border">Add</button>
                 <button className="bg-blue-200 px-2 rounded hover:bg-blue-300 text-sm hover:border">Edit</button>
@@ -465,6 +468,32 @@ const IndividualForm = () => {
             </div>
             <div className="grid grid-cols-12 w-full">
               <ul className="mt-2 grid grid-cols-2 col-span-6 gap-1 gap-x-5">
+                <li className="flex col-span-2">
+                  <label className="min-w-30" htmlFor="">Business Name :</label>
+                  <input type="text" className="w-full p-1 border" />
+                </li>
+                <li className="flex">
+                  <label className="min-w-30" htmlFor="">GSTN :</label>
+                  <input type="text" className="w-full p-1 border" />
+                </li>
+                <div className="flex justify-between col-span-1">
+                  <li className="border grid grid-cols-10">
+                    {/* relative left-8 */}
+                    <a className="col-span-1"> </a>
+                    <select className="col-span-4 border-r" name="" id="">
+                      <option value="">Active</option>
+                      <option value="">InActive</option>
+                    </select>
+                    
+                    <a className="col-span-1"> </a>
+                    <select className="col-span-4" name="" id="">
+                      <option value="">Regular</option>
+                      <option value="">Composition</option>
+                    </select>
+                  </li>
+                  <CiImport className="relative left-10 size-8 text-blue-500"/>
+                </div>
+
               {BusinessAddress.map(address => (
                     <li className="flex">
                       <label className="min-w-30">{address.name}</label>
@@ -484,8 +513,8 @@ const IndividualForm = () => {
                         </>}
                       </select>
                     ) : address?.radioType ? (
-                      <div className="flex gap-1 text-center">
-                      <div>
+                      <div className="flex gap-1 text-center items-center">
+                      <div className="mr-3">
                         <input type="radio" name="radioGroup" id="activeAddressType" />
                         <label htmlFor="activeAddressType">Active</label>
                       </div>
@@ -502,7 +531,7 @@ const IndividualForm = () => {
             </div>
           </div>
 
-          <div id="MSME"   className={`${childActiveBtn === "MSME" ? "border-gray-200 bg-slate-50":"border-gray-100"} rounded-xl px-3 py-3 shadow-2xs`}>
+          {/* <div id="MSME"   className={`${childActiveBtn === "MSME" ? "border-gray-200 bg-slate-50":"border-gray-100"} rounded-xl px-3 py-3 shadow-2xs`}>
 
             <h1 className=" font-semibold text-gray-800 border-b border-gray-400 pb-1">
               MSME Information 
@@ -517,7 +546,7 @@ const IndividualForm = () => {
                 ))}
               </ul>
             </div>
-          </div>
+          </div> */}
           <div id="Bank" className={`${childActiveBtn === "Bank" ? "border-gray-200 bg-slate-50":"border-gray-100"} rounded-xl px-3 py-3 shadow-2xs`}>
             <h1 className="font-semibold text-gray-800 border-b border-gray-400 pb-1">
             Bank Information
