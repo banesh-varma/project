@@ -153,7 +153,7 @@ const EachClientData = () => {
   const toggleOpen = () => setIsOpen(!isOpen);
 
   return (
-    <div className="rounded-md px-3 py-5 space-y-3.5">
+    <div className="rounded-md px-3 py-2 space-y-3.5">
       <div className="flex w-full">
         <EachHeading className="h-[150px] min-w-[200px] border-r-0">
           <img
@@ -181,12 +181,14 @@ const EachClientData = () => {
           Communication
         </EachHeading>
       </div>
+      <div className="grid grid-cols-2">
+
       <div className="font-sans text-sm">
         {/* Header row */}
-        <div className="px-3 flex border font-bold">
+        <div className=" flex font-bold">
           <div
-            className="flex items-center border-r transition-all duration-300"
-            style={{ width: isOpen ? '256px' : `${48 + maxIndentLevel * 24}px` }}
+            className="px-3 flex items-center border transition-all duration-300"
+            style={{ width: isOpen ? '269px' : `${62 + maxIndentLevel * 24.5}px` }}
           >
             <button
               onClick={toggleOpen}
@@ -196,12 +198,12 @@ const EachClientData = () => {
             </button>
             <span className={isOpen ? 'ml-2' : 'ml-2 opacity-0'}>Asst. Year</span>
           </div>
-          <select className="w-32 border-r p-2">
+          <select className={`${isOpen ? 'w-[128px]' : 'w-[127px]'} border-r border-t border-b p-2`}>
             <option>{currentYear - 1} - {currentYear}</option>
             <option>{currentYear - 2} - {currentYear - 1}</option>
             <option>{currentYear - 3} - {currentYear - 2}</option>
           </select>
-          <select className="w-32 border-r p-2">
+          <select className="w-32 border-r border-t border-b p-2">
             <option>{currentYear - 2} - {currentYear - 1}</option>
             <option>{currentYear - 3} - {currentYear - 2}</option>
             <option>{currentYear - 4} - {currentYear - 3}</option>
@@ -210,13 +212,13 @@ const EachClientData = () => {
 
         {/* Data rows */}
         {filteredRows.map((row, idx) => (
-          <div key={row.key} className="px-3 flex border border-t-0">
+          <div key={row.key} className=" flex  border-t-0">
             <div
-              className="flex items-center border-r transition-all duration-300"
-              style={{ width: isOpen ? '256px' : `${48 + maxIndentLevel * 24}px` }}
+              className="px-3 flex items-center border-r border-l border-b transition-all duration-300"
+              style={{ width: isOpen ? '269px' : `${62 + maxIndentLevel * 24}px` }}
             >
               <div
-                className="flex items-center cursor-pointer w-full"
+                className=" flex items-center cursor-pointer w-full"
                 style={{ marginLeft: `${row.level * 24}px` }}
                 onClick={() => handleSectionToggle(row)}
               >
@@ -228,7 +230,7 @@ const EachClientData = () => {
                     </span>
                   </div>
                   {row.isParent && row.hasChildren && (
-                    <span className="mr-1">
+                    <span className="mr-1 ">
                       {openSections.has(row.key) ? <FaChevronDown size={10} /> : <FaChevronRight size={10} />}
                     </span>
                   )}
@@ -236,15 +238,18 @@ const EachClientData = () => {
                 </div>
               </div>
             </div>
-            <div className="w-32 border-r p-2">
+            <div className="w-32 border-r border-b p-2">
               <input className="w-full outline-none" />
             </div>
-            <div className="w-32 border-r p-2">
+            <div className="w-32 border-r border-b p-2">
               <input className="w-full outline-none" />
             </div>
           </div>
         ))}
       </div>
+      
+      </div>
+
     </div>
   );
 };
