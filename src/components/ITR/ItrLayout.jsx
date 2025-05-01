@@ -6,7 +6,7 @@ import { Outlet } from 'react-router-dom';
 const ItrLayout = () => (
   <>
       <Header/>
-    <div className='h-[103vh] w-full flex justify-between overflow-auto'>
+    <div className='h-[103vh] w-full'>
         <Outlet />
     </div>
   </>

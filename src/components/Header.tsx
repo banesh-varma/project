@@ -1,9 +1,17 @@
+import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 
 const listRoutings = ["CRM", "ACC", "GST", "TDS", "ITR", "ROC", "CMA"]
 
 const Header = () => {
   const navigate = useNavigate()
+  const [selectActiveROuting, setSelectActiveRouting] = useState("")
+  const {pathname} = window.location
+  
+  useEffect(()=>{
+    setSelectActiveRouting(pathname.split("/")[1])
+  },[pathname])
+
   return(
     <div className="bg-blue-800 font-medium text-white flex justify-between items-center border-solid border-black border-b-1 px-3 fixed-top h-[8vh]">
       <div className="w-130 flex justify-between items-center">
@@ -13,6 +21,7 @@ const Header = () => {
           className="p-4 px-5 rounded-md outline-0"
           onChange={(e) => navigate(`/${(e.target.value).toLowerCase()}`)}
           defaultValue=""
+          value={selectActiveROuting.toUpperCase()}
         >
           {
             listRoutings.map(each => (
