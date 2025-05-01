@@ -6,7 +6,7 @@ import { AiTwotoneBank } from "react-icons/ai";
 import { RiInfoCardFill } from "react-icons/ri";
 import { MdAppRegistration, MdChevronLeft, MdChevronRight, MdEdit, MdLocalPostOffice, MdMedicalInformation } from "react-icons/md";
 import { GiBank } from "react-icons/gi";
-import { IoBusiness, IoMail } from "react-icons/io5";
+import { IoBusiness, IoMail, IoTrash } from "react-icons/io5";
 import { CgProfile } from "react-icons/cg";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -15,6 +15,19 @@ const Label =({children}) => {
     <label className="">{children}</label>
   )
 }
+
+
+const activeAddresses = [
+  {
+    address: "Acme Corp, 123 Innovation Dr, Silicon Valley, CA"
+  },
+  {
+    address: "Global Tech Ltd, 456 Enterprise Rd, Austin, TX"
+  },
+  {
+    address: "Info Tech Ltd, 456 Global Rd, Westin, IND"
+  }
+]
 
 const personalDetails = [
   {
@@ -117,14 +130,6 @@ const residentialAddress = [
   },
 ]
 const BusinessAddress = [
-  // {
-  //   name: "Business Name :",
-  //   full:"",
-  // },
-  // {
-  //   name: "GSTN :",
-  //   full:"",
-  // },
   {
       name: "Address Title :",
       full:"",
@@ -457,17 +462,15 @@ const IndividualForm = () => {
             <h1 className="font-semibold text-gray-800 border-b border-gray-400 pb-1">
               Business / Office Information (B.Info)
             </h1>
-            <div className="flex gap-2">
+            <div className="flex gap-4">
                 <button className="bg-neutral-100 px-2 rounded hover:border-t hover:border-l hover:border-r hover:bg-neutral-300 text-sm">Active</button>
                 <button className="bg-blue-200 px-2 rounded hover:bg-blue-300 text-sm hover:border">Inactive</button>
                 <button className="bg-blue-200 px-2 rounded hover:bg-blue-300 text-sm hover:border">Add</button>
-                <button className="bg-blue-200 px-2 rounded hover:bg-blue-300 text-sm hover:border">Edit</button>
-                <button className="bg-blue-200 px-2 rounded hover:bg-blue-300 text-sm hover:border">Delete</button>
                 <button className="bg-blue-200 px-2 rounded hover:bg-blue-300 text-sm hover:border">Save</button>
               </div>
             </div>
-            <div className="grid grid-cols-12 w-full">
-              <ul className="mt-2 grid grid-cols-2 col-span-6 gap-1 gap-x-5">
+            <div className="grid grid-cols-12 w-full space-x-10">
+              <ul className="mt-2 grid grid-cols-2 col-span-12 lg:col-span-7 gap-1 gap-x-5">
                 <li className="flex col-span-2">
                   <label className="min-w-30" htmlFor="">Business Name :</label>
                   <input type="text" className="w-full p-1 border" />
@@ -476,9 +479,9 @@ const IndividualForm = () => {
                   <label className="min-w-30" htmlFor="">GSTN :</label>
                   <input type="text" className="w-full p-1 border" />
                 </li>
-                <div className="flex justify-between col-span-1">
-                  <li className="border grid grid-cols-10">
-                    {/* relative left-8 */}
+                {/* <li className="flex justify-between ">
+                  <div className="border grid grid-cols-10">
+                    relative left-8 
                     <a className="col-span-1"> </a>
                     <select className="col-span-4 border-r" name="" id="">
                       <option value="">Active</option>
@@ -490,9 +493,20 @@ const IndividualForm = () => {
                       <option value="">Regular</option>
                       <option value="">Composition</option>
                     </select>
-                  </li>
-                  <CiImport className="relative left-10 size-8 text-blue-500"/>
-                </div>
+                  </div>
+                  <CiImport className="size-8 text-blue-500"/>
+                </li> */}
+                <li className="relative flex justify-between ">
+                  <div className="flex w-full">
+                    <select className="border w-full px-2" name="" id="" >
+                      <option value="">Active</option>
+                      <option value="">InActive</option>
+                    </select>
+                    <select className="border w-full" name="" id="">
+                      <option value="">Regular</option>
+                      <option value="">Composition</option>
+                    </select></div>
+                    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" className="absolute -right-8 size-8 text-blue-500" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><g id="Import"><g><path d="M5.552,20.968a2.577,2.577,0,0,1-2.5-2.73c-.012-2.153,0-4.306,0-6.459a.5.5,0,0,1,1,0c0,2.2-.032,4.4,0,6.6.016,1.107.848,1.589,1.838,1.589H18.353A1.546,1.546,0,0,0,19.825,19a3.023,3.023,0,0,0,.1-1.061V11.779h0a.5.5,0,0,1,1,0c0,2.224.085,4.465,0,6.687a2.567,2.567,0,0,1-2.67,2.5Z"></path><path d="M11.63,15.818a.459.459,0,0,0,.312.138c.014,0,.027.005.042.006s.027,0,.041-.006a.457.457,0,0,0,.312-.138l3.669-3.669a.5.5,0,0,0-.707-.707l-2.815,2.815V3.515a.5.5,0,0,0-1,0V14.257L8.668,11.442a.5.5,0,0,0-.707.707Z"></path></g></g></svg></li>
 
               {BusinessAddress.map(address => (
                     <li className="flex">
@@ -528,6 +542,21 @@ const IndividualForm = () => {
                   </li>
                   ))}
               </ul>
+
+              <div className="mt-2 col-span-5 gap-x-5 border">
+                <span className="">
+                  <h1 className="min-w-30 bg-neutral-200 font-semibold">Active Business Addresses:</h1>
+                  <ol className="list-decimal">
+                    {activeAddresses.map(eachAdd => (
+                      <li className="ml-6 my-2 list-decimal" style={{ display: "list-item" }}>
+                        <span>{eachAdd.address}</span>
+                        <button className="text-blue-700 mx-2 px-2 py-1 rounded text-sm hover:scale-105 transition-all bg-blue-100"><MdEdit/></button>
+                        <button className="text-red-400 px-2 py-1 rounded text-sm bg-red-50"><IoTrash/></button>
+                      </li>
+                    ))}
+                  </ol>
+                </span>
+              </div>
             </div>
           </div>
 
