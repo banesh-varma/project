@@ -79,10 +79,6 @@ export default function LoginWithCarousel() {
             placeholder={haveAccount? "Create Password": "Password"}
             className="w-full px-2 py-1 border rounded"
             />
-          <div className="text-blue-500 flex items-center justify-between">
-          <a href="/forgot-verify" className="underline">Forgot Password?</a>
-          <a href="/sign-up">Create New</a>  
-          </div>  
           <button
             type="submit"
             className="w-full bg-blue-500 text-white py-1 rounded hover:bg-blue-600"
@@ -90,6 +86,10 @@ export default function LoginWithCarousel() {
             >
             Sign In
           </button>
+          <div className="text-blue-500 flex items-center justify-between">
+          <a href="/forgot-verify" className="underline">Forgot Password?</a>
+          <a href="/sign-up">Create New</a>  
+          </div>  
         </form>
         <form className="w-full mt-5 max-w-sm space-y-2 border p-3 border-gray-300 shadow-md rounded-lg">
           <h2 className="text-2xl font-semibold text-center">Query</h2>
