@@ -9,6 +9,7 @@ import AllClients from './components/ITR/allClientsPage'
 import CrmLayout from './components/CRM/CrmLayout'
 import EachClientData from './components/ITR/eachClientData'
 import LoginWithCarousel from './landingPage'
+import ItrLayout from './components/ITR/ItrLayout'
 
 function App() {
   useEffect(() => {
@@ -45,8 +46,10 @@ function App() {
               <Route path='accounts' element={<DashBoard />} />
               <Route path='reports' element={<DashBoard />} />
             </Route>
-          <Route path="itr/" element={<AllClients/>}/>
-          <Route path="clients/:id" element={<EachClientData/>}/>
+            <Route path='/itr' element={<ItrLayout/>}>
+              <Route path="" element={<AllClients/>}/>
+              <Route path="clients/:id" element={<EachClientData/>}/>
+            </Route>          
         </Routes>
       </BrowserRouter>
     </div>

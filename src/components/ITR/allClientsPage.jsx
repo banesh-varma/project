@@ -27,7 +27,7 @@ const AllClients = () => {
                 <tbody>
               {
                 all.map((client) => (
-                  <tr onClick={() => navigate(`/clients/${client?.id}`)}  key={client.id} className="p-4 cursor-pointer hover:bg-gray-50">
+                  <tr onClick={() => navigate(`/itr/clients/${client?.id}`)}  key={client.id} className="p-4 cursor-pointer hover:bg-gray-50">
                     <td scope="col" className="border-2 border-gray-300 py-2 px-5">
                       <h2 className="text-lg font-semibold">{client.id}</h2>
                     </td>
