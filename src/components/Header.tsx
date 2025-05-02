@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 
 const listRoutings = ["CRM", "ACC", "GST", "TDS", "ITR", "ROC", "CMA"]
