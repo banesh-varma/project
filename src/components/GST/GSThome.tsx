@@ -23,14 +23,10 @@ import { MdDesignServices } from "react-icons/md";
 import { SlPaypal } from "react-icons/sl";
 import { SiLinuxprofessionalinstitute } from "react-icons/si";
 import Header from "../Header";
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 const GSTNavItems = [
-    {
-        name: "GST",
-        icon: <MdOutlineDashboard/>,
-    },
     {
         name: "Financial Year",
         icon: <MdOutlineSettings/>,
@@ -94,32 +90,44 @@ const GSTNavItems = [
     },
 ]
 
-const GSThome = () => {
+const GstLayout = () => {
     const [isOpen, changeIsOpen] = useState(false)
-    const [selectedItem, setSelectedItem] = useState(GSTNavItems[0].name)
+    const [selectedItem, setSelectedItem] = useState('')
+    const {pathname} = window.location
+
+    useEffect(()=>{
+        
+        const name = pathname.split("/")[1]
+        if(name !== 'gst'){
+            setSelectedItem(name)
+        }else{
+            setSelectedItem("Financial Year")
+        }
+    },[pathname])
+
     console.log(selectedItem)
     function useWindowWidth() {
-            useEffect(() => {
-              function handleResize() {
-                let x = window.innerWidth
-                console.log(x)
-                if(x <= 1000) {
-                    changeIsOpen(false)
-                }
-                else {  
-                    changeIsOpen(true)
-                }
-              }
-          
-              window.addEventListener('resize', handleResize);
-          
-              return () => {
-                window.removeEventListener('resize', handleResize);
-              };
-            }, []); 
-          }
-    
-        useWindowWidth() 
+        useEffect(() => {
+            function handleResize() {
+            let x = window.innerWidth
+            console.log(x)
+            if(x <= 1000) {
+                changeIsOpen(false)
+            }
+            else {  
+                changeIsOpen(true)
+            }
+            }
+        
+            window.addEventListener('resize', handleResize);
+        
+            return () => {
+            window.removeEventListener('resize', handleResize);
+            };
+        }, []); 
+        }
+
+    useWindowWidth() 
 
     return (
         <div className="h-screen w-full">
@@ -132,8 +140,8 @@ const GSThome = () => {
                     <hr />
                 <ul className={`flex flex-col gap-2 mt-1`}>
                   {GSTNavItems.map(eachItem => (
-                    <li title={eachItem.name} className={`${selectedItem === eachItem.name ? "bg-blue-400" : ''} flex gap-2 items-center transition-all mx-1 hover:text-black bg-gray-50 hover:bg-blue-300/50 px-2.5 py-1 border-b-2 border-amber-950 scale-105 hover:scale-105}`} >
-                      <Link to={`/${eachItem}`} relative="path" className="w-full flex gap-3 items-center">
+                    <li key={eachItem.name} title={eachItem.name} className={`${selectedItem === eachItem.name ? "bg-blue-400" : ''} flex gap-2 items-center transition-all mx-1 hover:text-black bg-gray-50 hover:bg-blue-300/50 px-2.5 py-1 border-b-2 border-amber-950 scale-105 hover:scale-105}`} >
+                      <Link to={`/${eachItem.name}`} relative="path" className="w-full flex gap-3 items-center">
                         <span className={`${isOpen? "": "text-md py-1 p-0"}`}>{eachItem.icon}</span>
                         <p className={`${isOpen? "" : "hidden"} transition-all duration-100 ease-in-out`}>{eachItem.name}</p>
                       </Link>
@@ -142,7 +150,7 @@ const GSThome = () => {
                 </ul>
             </div>
             <div className="w-full h-full">
-                hello
+                <Outlet/>
             </div>
             <div className="min-w-50 max-w-52 h-[103vh] overflow-y-auto bg-gray-50 p-2 border-gr border-l-1 transition-all duration-200 ease-in-out">
                 hai good morning have a great day
@@ -152,4 +160,4 @@ const GSThome = () => {
     )
 }
 
-export default GSThome
+export default GstLayout
