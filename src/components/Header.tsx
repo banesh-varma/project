@@ -8,8 +8,6 @@ const Header = () => {
 
   const currentPath = pathname.split("/")[1];
 
-  console.log(currentPath)
-  
 //   const [selectedOption, setSelectedOption] = useState(currentPath);
 
     
