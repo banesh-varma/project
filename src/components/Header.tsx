@@ -1,65 +1,47 @@
-import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 
 const listRoutings = ["CRM", "ACC", "GST", "TDS", "ITR", "ROC", "CMA"]
 
 const Header = () => {
-  const navigate = useNavigate()
-  const [selectActiveROuting, setSelectActiveRouting] = useState("")
   const {pathname} = window.location
-  
-  useEffect(()=>{
-    setSelectActiveRouting(pathname.split("/")[1])
-  },[pathname])
+  const navigate = useNavigate();
 
-  return(
-    <div className="bg-blue-800 font-medium text-white flex justify-between items-center border-solid border-black border-b-1 px-3 fixed-top h-[8vh]">
-      <div className="w-130 flex justify-between items-center">
+  const currentPath = pathname.split("/")[1];
+
+//   const [selectedOption, setSelectedOption] = useState(currentPath);
+
+    
+//   let r = listRoutings.find(each => each === "GST")
+// console.log(r)  
+
+//   useEffect(() => {
+    
+//     setSelectedOption(r ? [r] : [])
+//   }, [pathname]);
+
+  return (
+    <div className="bg-blue-800 font-medium text-white flex justify-between items-center border-solid border-black border-b-1 px-3 fixed-top py-3">
+      <div className="w-130 flex justify-between">
       <h1 className="font-bold text-shadow-md text-shadow-blue-900">N SHIVA PRASAD CO.</h1>
-        <div className="bg-white mx-4 text-black border-1 border-solid border-black px-4 border-b-0">
-        <select
-          className="p-4 px-5 rounded-md outline-0"
-          onChange={(e) => navigate(`/${(e.target.value).toLowerCase()}`)}
-          defaultValue=""
-          value={selectActiveROuting.toUpperCase()}
-        >
-          {
-            listRoutings.map(each => (
-              <option  key={each} value={each}>
-                {each}
-              </option>
-            ))
-          }
-        </select>
+          <select
+            className="rounded outline-0 bg-white text-black px-3"
+            onChange={(e) => {
+              let selectedValue : string | undefined = undefined
+              selectedValue = e.target.value;
+              navigate(`/${selectedValue.toLowerCase()}`);
+            }}
+            value={currentPath.toUpperCase()}
+          >
+            {listRoutings.map(each => (
+              <option key={each} value={each}>{each}</option>
+            ))}
+          </select>
         </div>
       </div>
-      <div className="font-medium">
-        <h1>3:20 hrs</h1>
-        <p>Nshiva@gmail.com</p>
-      </div>
-    </div>
-  )
-}
+  );
+};
+
 export default Header
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -9,6 +9,8 @@ import CrmLayout from './components/CRM/CrmLayout'
 import EachClientData from './components/ITR/eachClientData'
 import LoginWithCarousel from './landingPage'
 import ItrLayout from './components/ITR/ItrLayout'
+import GstLayout from './components/GST/GSThome'
+import GstFInancial from './components/GST/gstFinancial'
 
 function App() {
   useEffect(() => {
@@ -20,6 +22,7 @@ function App() {
       document.body.style.zoom = "100%"; // Reset on unmount
     };
   }, []);
+
   return (
     <div className='h-screen w-full'>
       <BrowserRouter>
@@ -49,6 +52,9 @@ function App() {
               <Route path="" element={<AllClients/>}/>
               <Route path="clients/:id" element={<EachClientData/>}/>
             </Route>          
+            <Route path='/gst' element={<GstLayout/>}>
+              <Route path="" element={<GstFInancial/>}/>
+            </Route>
         </Routes>
       </BrowserRouter>
     </div>

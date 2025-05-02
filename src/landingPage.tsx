@@ -1,12 +1,10 @@
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
 
 export default function LoginWithCarousel() {
-    const [haveAccount, setHaveAccount] = useState(false)
     const navigate = useNavigate();
 
     const NextArrow = ({ onClick }: { onClick?: React.MouseEventHandler<HTMLDivElement> }) => (
@@ -67,16 +65,16 @@ export default function LoginWithCarousel() {
       <div className=" col-span-4 flex flex-col items-center justify-center self-end p-8 ">
         <form className="w-full max-w-sm space-y-2 border p-3 border-gray-300 shadow-md  rounded-lg">
           <h2 className="text-2xl font-semibold text-center">Login</h2>
-          <label>{haveAccount ? "Mobile No" : "ID"}</label>
+          <label>ID</label>
           <input
             type="email"
-            placeholder={haveAccount ? "Mobile No / PAN No / " : "ID"}
+            placeholder="Mobile No / PAN No / "
             className="w-full px-2 py-1 border rounded"
             />
-          <label>{haveAccount? "Create Password": "Password"}</label>
+          <label>Password</label>
           <input
             type="password"
-            placeholder={haveAccount? "Create Password": "Password"}
+            placeholder="Password"
             className="w-full px-2 py-1 border rounded"
             />
           <button
@@ -84,7 +82,7 @@ export default function LoginWithCarousel() {
             className="w-full bg-blue-500 text-white py-1 rounded hover:bg-blue-600"
             onClick={() => navigate('/crm', { replace: true })}
             >
-            Sign In
+            Sign In     
           </button>
           <div className="text-blue-500 flex items-center justify-between">
           <a href="/forgot-verify" className="underline">Forgot Password?</a>
