@@ -2,19 +2,25 @@ import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 
 const listRoutings = ["CRM", "ACC", "GST", "TDS", "ITR", "ROC", "CMA"]
-import { useLocation } from "react-router-dom";
 
 const Header = () => {
-  const location = useLocation();
+  const {pathname} = window.location
   const navigate = useNavigate();
 
-  const currentPath = location.pathname.slice(1).toUpperCase();
-  const [selectedOption, setSelectedOption] = useState(currentPath || 'CRM');
+  const currentPath = pathname.split("/")[1];
 
-  useEffect(() => {
-    // Update selected option when location changes
-    setSelectedOption(currentPath || 'CRM');
-  }, [location]);
+  console.log(currentPath)
+  
+//   const [selectedOption, setSelectedOption] = useState(currentPath);
+
+    
+//   let r = listRoutings.find(each => each === "GST")
+// console.log(r)  
+
+//   useEffect(() => {
+    
+//     setSelectedOption(r ? [r] : [])
+//   }, [pathname]);
 
   return (
     <div className="bg-blue-800 font-medium text-white flex justify-between items-center border-solid border-black border-b-1 px-3 fixed-top py-3">
@@ -23,11 +29,11 @@ const Header = () => {
           <select
             className="rounded outline-0 bg-white text-black px-3"
             onChange={(e) => {
-              const selectedValue = e.target.value;
-              setSelectedOption(selectedValue);
+              let selectedValue : string | undefined = undefined
+              selectedValue = e.target.value;
               navigate(`/${selectedValue.toLowerCase()}`);
             }}
-            value={selectedOption}
+            value={currentPath.toUpperCase()}
           >
             {listRoutings.map(each => (
               <option key={each} value={each}>{each}</option>

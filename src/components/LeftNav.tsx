@@ -121,7 +121,7 @@ const LeftNav = () => {
     useWindowWidth() 
 
     return (
-        <div className={`${isOpen? "min-w-50": "w-15"} h-[103vh] overflow-y-auto bg-gray-50 p-2 border-gr border-r-1 transition-all duration-200 ease-in-out`}>
+        <div className={`${isOpen? "min-w-50": "min-w-18"} h-[103vh] overflow-y-auto bg-gray-50 p-2 border-gr border-r-1 transition-all duration-200 ease-in-out`}>
             <button onClick={() => changeIsOpen(!isOpen)}  className={`${isOpen ? "left-46" : "left-11"} ml-2 cursor-pointer outline-0  bg-blue-800 text-white rounded-md p-1 hover:bg-blue-600 hover:scale-105 transition-all duration-200 ease-in-out mb-2`}>
                 {isOpen ? <MdChevronLeft className="text-xl size-6 cursor-pointer"/> : <MdChevronRight className="text-xl size-6 cursor-pointer"/>}
             </button>
@@ -129,6 +129,7 @@ const LeftNav = () => {
             <ul className={`flex flex-col gap-2 mt-1`}>
                 {navItems.map(eachItem => (<NavItems isOpen={isOpen} key={eachItem.name} itemDetails={eachItem} />))}
             </ul>
+            
         </div>
     )
 }

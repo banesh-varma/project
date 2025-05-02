@@ -92,6 +92,7 @@ const GSTNavItems = [
 
 const GstLayout = () => {
     const [isOpen, changeIsOpen] = useState(false)
+    const [showText, setShowText] = useState(false);
     const [selectedItem, setSelectedItem] = useState('')
     const {pathname} = window.location
 
@@ -105,7 +106,6 @@ const GstLayout = () => {
         }
     },[pathname])
 
-    console.log(selectedItem)
     function useWindowWidth() {
         useEffect(() => {
             function handleResize() {
@@ -127,6 +127,23 @@ const GstLayout = () => {
         }, []); 
         }
 
+    
+    useEffect(() => {
+        let timer = 0
+
+        if (isOpen) {
+        // Delay showing text by 2 seconds
+        timer = setTimeout(() => {
+            setShowText(true);
+        }, 200);
+        } else {
+        // Immediately hide text if isOpen is false
+        setShowText(false);
+        }
+
+        return () => clearTimeout(timer);
+    }, [isOpen]);    
+
     useWindowWidth() 
 
     return (
@@ -138,16 +155,31 @@ const GstLayout = () => {
                     {isOpen ? <MdChevronLeft className="text-xl size-6 cursor-pointer"/> : <MdChevronRight className="text-xl size-6 cursor-pointer"/>}
                 </button>
                     <hr />
-                <ul className={`flex flex-col gap-2 mt-1`}>
-                  {GSTNavItems.map(eachItem => (
-                    <li key={eachItem.name} title={eachItem.name} className={`${selectedItem === eachItem.name ? "bg-blue-400" : ''} flex gap-2 items-center transition-all mx-1 hover:text-black bg-gray-50 hover:bg-blue-300/50 px-2.5 py-1 border-b-2 border-amber-950 scale-105 hover:scale-105}`} >
-                      <Link to={`/${eachItem.name}`} relative="path" className="w-full flex gap-3 items-center">
-                        <span className={`${isOpen? "": "text-md py-1 p-0"}`}>{eachItem.icon}</span>
-                        <p className={`${isOpen? "" : "hidden"} transition-all duration-100 ease-in-out`}>{eachItem.name}</p>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
+                    <ul className="flex flex-col gap-2 mt-1">
+                        {GSTNavItems.map(eachItem => (
+                            <li
+                            key={eachItem.name}
+                            title={eachItem.name}
+                            className={`${
+                                selectedItem === eachItem.name ? "bg-blue-400" : ""
+                            } flex gap-2 items-center transition-all mx-1 hover:text-black bg-gray-50 hover:bg-blue-300/50 px-2.5 py-1 border-b-2 border-amber-950 scale-105 hover:scale-105`}
+                            >
+                            <Link to={`/${eachItem.name}`} relative="path" className="w-full flex gap-3 items-center">
+                                <span className={`${isOpen ? "" : "text-md"}`}>{eachItem.icon}</span>
+
+                                {/* Here's the fix: use opacity and width/overflow to hide text smoothly */}
+                                <p
+                                className={`transition-all duration-300 ease-in-out whitespace-nowrap overflow-hidden ${
+                                    isOpen ? "opacity-100 w-auto" : "opacity-0 w-0"
+                                }`}
+                                >
+                                {eachItem.name}
+                                </p>
+                            </Link>
+                            </li>
+                        ))}
+                        </ul>
+
             </div>
             <div className="w-full h-full">
                 <Outlet/>

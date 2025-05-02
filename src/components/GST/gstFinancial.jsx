@@ -1,6 +1,6 @@
 const GstFInancial = () => {
     return(
-        <div>
+        <div className="">
             <p>Vikas</p>
         </div>
     )
