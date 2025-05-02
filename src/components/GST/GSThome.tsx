@@ -92,7 +92,6 @@ const GSTNavItems = [
 
 const GstLayout = () => {
     const [isOpen, changeIsOpen] = useState(false)
-    const [showText, setShowText] = useState(false);
     const [selectedItem, setSelectedItem] = useState('')
     const {pathname} = window.location
 
@@ -125,24 +124,7 @@ const GstLayout = () => {
             window.removeEventListener('resize', handleResize);
             };
         }, []); 
-        }
-
-    
-    useEffect(() => {
-        let timer = 0
-
-        if (isOpen) {
-        // Delay showing text by 2 seconds
-        timer = setTimeout(() => {
-            setShowText(true);
-        }, 200);
-        } else {
-        // Immediately hide text if isOpen is false
-        setShowText(false);
-        }
-
-        return () => clearTimeout(timer);
-    }, [isOpen]);    
+        }    
 
     useWindowWidth() 
 
