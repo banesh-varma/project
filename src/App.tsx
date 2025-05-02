@@ -9,6 +9,7 @@ import CrmLayout from './components/CRM/CrmLayout'
 import EachClientData from './components/ITR/eachClientData'
 import LoginWithCarousel from './landingPage'
 import ItrLayout from './components/ITR/ItrLayout'
+import GSThome from './components/GST/GSThome'
 
 function App() {
   useEffect(() => {
@@ -49,6 +50,8 @@ function App() {
               <Route path="" element={<AllClients/>}/>
               <Route path="clients/:id" element={<EachClientData/>}/>
             </Route>          
+            <Route path='/gst' element={<GSThome/>}>
+            </Route>
         </Routes>
       </BrowserRouter>
     </div>
