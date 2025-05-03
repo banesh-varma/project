@@ -7,6 +7,7 @@ import { MdChevronLeft, MdChevronRight, MdOutlineDashboard } from 'react-icons/m
 import { IoHome } from 'react-icons/io5';
 import { FaChevronDown, FaChevronRight } from 'react-icons/fa';
 import DashBoard from "../DashBoard";
+import Computation from "./computation";
 
 function EachHeading({ children, className }) {
   return (
@@ -65,7 +66,7 @@ const EachClientData = () => {
   const [selected, setSelected] = useState('dashboard')
   const [accordion, setAccordion] = useState({computation: true, pgbp: true, pgbpPresemptive: true, pgbpNormalIncom: true, captialGains:true, captialGainsShares:true, captialGainsOtherAssets:true, taxThereon:true, netTax:true, balanceSheet:true})
   const { id } = params;
-  const [selectedBtn, setSelectedBtn] = useState("dashBoard")
+  const [selectedBtn, setSelectedBtn] = useState("")
 
   const each = all.filter(each => each.id == id);
 
@@ -108,6 +109,8 @@ const EachClientData = () => {
 
   const [openSection, setOpenSection] = useState(null); // To manage the single open section
   const [openSections, setOpenSections] = useState(new Set());
+  const [rightContent, setRightContent] = useState("")
+  console.log(rightContent)
 
 
   // Improved filtering logic based on the single open section
@@ -153,7 +156,9 @@ const EachClientData = () => {
   };
   
 
-  const toggleOpen = () => setIsOpen(!isOpen);
+  const toggleOpen = () => {
+    setIsOpen(!isOpen)
+  };
 
   return (
     <div className="rounded-md px-3 py-1 space-y-1">
@@ -248,24 +253,20 @@ const EachClientData = () => {
           </div>
         ))}
       </div> */}
-      <div className=" h-[85vh] border flex">
-        <div className=" h-full border-r-1">
-
-          <div className="h-[75%]  overflow-y-auto border-b-1">
-          <div>
-
+      <div className="flex gap-5">
+        <div>
           <div className=" flex font-bold">
-          <div className="px-3 flex items-center border transition-all duration-300">
-            <button
-              onClick={toggleOpen}
-              className="mx-2 p-1 bg-blue-800 text-white rounded hover:bg-blue-600"
-            >
-              {isOpen ? <MdChevronLeft size={20} /> : <MdChevronRight size={20} />}
-            </button>
-            <span className="w-4"></span>
+            <div className="px-3 flex items-center border transition-all duration-300">
+              <button
+                onClick={toggleOpen}
+                className="mx-2 p-1 bg-blue-800 text-white rounded hover:bg-blue-600"
+              >
+                {isOpen ? <MdChevronLeft size={20} /> : <MdChevronRight size={20} />}
+              </button>
+              <span className="w-4"></span>
 
-            <span className={`${isOpen ? 'ml-2' : 'hidden'} w-[151px] transition-all ease-in-out duration-100`}>Asst. Year</span>
-          </div>
+              <span className={`${isOpen ? 'ml-2' : 'hidden'} w-[151px] transition-all ease-in-out duration-100`}>Asst. Year</span>
+            </div>
             <select className={`w-32 border-r border-t border-b p-2`}>
               <option>{currentYear - 1} - {currentYear}</option>
               <option>{currentYear - 2} - {currentYear - 1}</option>
@@ -277,229 +278,66 @@ const EachClientData = () => {
               <option>{currentYear - 4} - {currentYear - 3}</option>
             </select>
           </div>
-          <div className="transition-all  ease-in-out duration-100 flex font-bold">
-            <div onClick={() => setAccordion({...accordion, computation: !accordion.computation})} className="cursor-pointer px-3 flex items-center border bg-blue-50 text-blue-500 hover:text-blue-700">
-              <IoHome className="mx-3.5"/>
-                <span className={`${isOpen ? 'ml-2' : 'hidden'} w-[151px] flex gap-2 `}>Computation </span> 
-                {accordion.computation ? <IoArrowDown  /> : <IoArrowUp  />}
-            </div>
-            <input className={`w-32 border-r border-t border-b p-0.5`} />
-            <input className="w-32 border-r border-t border-b p-0,5" />
-          </div>
-          {
-            !accordion.computation &&
-              <div className="">
-                <div className="transition-all ease-in-out duration-100 flex font-bold">
-                  <div className="px-3 flex items-center border transition-all duration-300">
-                    <IoHome className="mx-3.5"/>
-                      <span className={`${isOpen ? 'ml-2' : 'hidden'} w-[151px] font-normal   transition-all ease-in-out duration-100`}>AIS | TIS </span>
-                      <span className="w-4"></span>
-                  </div>
-                  <input className={`w-32 border-r border-t border-b p-0,5`} />
-                  <input className="w-32 border-r border-t border-b p-0,5" />
-                </div>
-                <div className="transition-all ease-in-out duration-100 flex font-bold">
-                  <div className="px-3 flex items-center border transition-all duration-300">
-                    <IoHome className="mx-3.5"/>
-                      <span className={`${isOpen ? 'ml-2' : 'hidden'} font-normal w-[151px]  transition-all ease-in-out duration-100`}>Permanent Info </span>
-                      <span className="w-4"></span>
-                  </div>
-                  <input className={`w-32 border-r border-t border-b p-0,5`} />
-                  <input className="w-32 border-r border-t border-b p-0,5" />
-                </div>
-                <div className="transition-all ease-in-out duration-100 flex font-bold">
-                  <div className="px-3 flex items-center border transition-all duration-300">
-                    <IoHome className="mx-3.5"/>
-                      <span className={`${isOpen ? 'ml-2' : 'hidden'} font-normal  w-[151px]  transition-all ease-in-out duration-100`}>Salary </span>
-                      <span className="w-4"></span>
-                  </div>
-                  <input className={`w-32 border-r border-t border-b p-0,5`} />
-                  <input className="w-32 border-r border-t border-b p-0,5" />
-                </div>
-                <div className="transition-all ease-in-out duration-100 flex font-bold">
-                  <div className="px-3 flex items-center border transition-all duration-300">
-                    <IoHome className="mx-3.5"/>
-                      <span className={`${isOpen ? 'ml-2' : 'hidden'} font-normal  w-[151px]  transition-all ease-in-out duration-100`}>House Peoperty </span>
-                      <span className="w-4"></span>
-                  </div>
-                  <input className={`w-32 border-r border-t border-b p-0,5`} />
-                  <input className="w-32 border-r border-t border-b p-0,5" />
-                </div>
-                <div className="transition-all ease-in-out duration-100 flex font-bold">
-                  <div className="px-3 flex items-center border transition-all duration-300">
-                    <IoHome className="mx-3.5"/>
-                      <span className={`${isOpen ? 'ml-2' : 'hidden'} font-normal  w-[151px]  transition-all ease-in-out duration-100`}>Speculative </span>
-                      <span className="w-4"></span>
-                  </div>
-                  <input className={`w-32 border-r border-t border-b p-0,5`} />
-                  <input className="w-32 border-r border-t border-b p-0,5" />
-                </div>
-                <div className="transition-all  ease-in-out duration-100 flex font-bold">
-                  <div onClick={() => setAccordion({...accordion, pgbp: !accordion.pgbp})} className="cursor-pointer px-3 flex items-center border bg-blue-50 text-blue-500 hover:text-blue-700">
-                    <IoHome className="mx-3.5"/>
-                      <span className={`${isOpen ? 'ml-2' : 'hidden'} w-[151px] flex gap-2 `}>PGBP </span> 
-                      {accordion.pgbp ? <IoArrowDown  /> : <IoArrowUp  />}
-                  </div>
-                  <input className={`w-32 border-r border-t border-b p-0.5`} />
-                  <input className="w-32 border-r border-t border-b p-0,5" />
-                </div>
-                {
-                  accordion.pgbp && 
-                  <div>
-                  <div className="transition-all  ease-in-out duration-100 flex font-bold">
-                    <div onClick={() => setAccordion({...accordion, pgbpPresemptive: !accordion.pgbpPresemptive})} className="cursor-pointer px-3 flex items-center border bg-blue-50 text-blue-500 hover:text-blue-700">
-                      <IoHome className="mx-3.5"/>
-                        <span className={`${isOpen ? 'ml-5' : 'hidden'} w-[139px]  flex gap-2 italic`}>Presemptive </span> 
-                        {!accordion.pgbpPresemptive ? <IoArrowDown  /> : <IoArrowUp  />}
-                    </div>
-                    <input className={`w-32 border-r border-t border-b p-0.5`} />
-                    <input className="w-32 border-r border-t border-b p-0,5" />
-                  </div>
-                  {
-                    accordion.pgbpPresemptive && 
-                    <>
-                      <div className="transition-all ease-in-out duration-100 flex font-bold">
-                  <div className="px-3 flex items-center border transition-all duration-300">
-                    <IoHome className="mx-3.5"/>
-                      <span className={`${isOpen ? 'ml-7' : 'hidden'} font-normal w-[131px] italic transition-all ease-in-out duration-100`}>Commission</span>
-                      <span className="w-4"></span>
-                  </div>
-                  <input className={`w-32 border-r border-t border-b p-0,5`} />
-                  <input className="w-32 border-r border-t border-b p-0,5" />
-                </div><div className="transition-all ease-in-out duration-100 flex font-bold">
-                  <div className="px-3 flex items-center border transition-all duration-300">
-                    <IoHome className="mx-3.5"/>
-                      <span className={`${isOpen ? 'ml-7' : 'hidden'} font-normal w-[131px]  italic transition-all ease-in-out duration-100`}>44AD</span>
-                      <span className="w-4"></span>
-                  </div>
-                  <input className={`w-32 border-r border-t border-b p-0,5`} />
-                  <input className="w-32 border-r border-t border-b p-0,5" />
-                </div><div className="transition-all ease-in-out duration-100 flex font-bold">
-                  <div className="px-3 flex items-center border transition-all duration-300">
-                    <IoHome className="mx-3.5"/>
-                      <span className={`${isOpen ? 'ml-7' : 'hidden'} font-normal w-[131px]  italic transition-all ease-in-out duration-100`}>44ADA</span>
-                      <span className="w-4"></span>
-                  </div>
-                  <input className={`w-32 border-r border-t border-b p-0,5`} />
-                  <input className="w-32 border-r border-t border-b p-0,5" />
-                </div><div className="transition-all ease-in-out duration-100 flex font-bold">
-                  <div className="px-3 flex items-center border transition-all duration-300">
-                    <IoHome className="mx-3.5"/>
-                      <span className={`${isOpen ? 'ml-7' : 'hidden'} font-normal w-[131px] italic  transition-all ease-in-out duration-100`}>44AE</span>
-                      <span className="w-4"></span>
-                  </div>
-                  <input className={`w-32 border-r border-t border-b p-0,5`} />
-                  <input className="w-32 border-r border-t border-b p-0,5" />
-                </div>
-                    </>
-
-                  }
-                  <div className="transition-all  ease-in-out duration-100 flex font-bold">
-
-                    <div onClick={() => setAccordion({...accordion, pgbpNormalIncom: !accordion.pgbpNormalIncom})} className="cursor-pointer px-3 flex items-center border font-normal">
-                      <IoHome className="mx-3.5"/>
-                      <span className={`${isOpen ? 'ml-5' : 'hidden'} w-[139px] flex gap-2  italic `}>Normal Income </span> 
-                      {/* {accordion.pgbpNormalIncom ? <IoArrowDown  /> : <IoArrowUp  />}
-                       */}
-                       <span className="w-4"></span>
-                    </div>
-                    <input className={`w-32 border-r border-t border-b p-0.5`} />
-                    <input className="w-32 border-r border-t border-b p-0,5" />
-                </div>
-                
-                </div>
-                }
-                <div className="transition-all ease-in-out duration-100 flex font-bold">
-                  <div className="px-3 flex items-center border transition-all duration-300">
-                    <IoHome className="mx-3.5"/>
-                      <span className={`${isOpen ? 'ml-2' : 'hidden'} w-[151px] font-normal   transition-all ease-in-out duration-100`}>Firms Income</span>
-                      <span className="w-4"></span>
-                  </div>
-                  <input className={`w-32 border-r border-t border-b p-0,5`} />
-                  <input className="w-32 border-r border-t border-b p-0,5" />
-                </div>
-                <div className="transition-all  ease-in-out duration-100 flex font-bold">
-                  <div onClick={() => setAccordion({...accordion, captialGains: !accordion.captialGains})} className="cursor-pointer px-3 flex items-center border bg-blue-50 text-blue-500 hover:text-blue-700">
-                    <IoHome className="mx-3.5"/>
-                      <span className={`${isOpen ? 'ml-2' : 'hidden'} w-[151px] flex gap-2`}>Capital Gains</span> 
-                      {accordion.captialGains ? <IoArrowDown  /> : <IoArrowUp  />}
-                  </div>
-                  <input className={`w-32 border-r border-t border-b p-0.5`} />
-                  <input className="w-32 border-r border-t border-b p-0,5" />
-                </div>
-                {accordion.captialGains && <>
-                <div className="transition-all  ease-in-out duration-100 flex font-bold">
-                  <div onClick={() => setAccordion({...accordion, captialGainsShares: !accordion.captialGainsShares})} className="cursor-pointer px-3 flex items-center border bg-blue-50 text-blue-500 hover:text-blue-700">
-                    <IoHome className="mx-3.5"/>
-                      <span className={`${isOpen ? 'ml-5' : 'hidden'} w-[139px]  flex gap-2 italic`}>Shares</span> 
-                      {accordion.captialGainsShares ? <IoArrowDown  /> : <IoArrowUp  />}
-                  </div>
-                  <input className={`w-32 border-r border-t border-b p-0.5`} />
-                  <input className="w-32 border-r border-t border-b p-0,5" />
-                </div>
-                {
-                  accordion.captialGainsShares && data.Computation["Capital Gains"].Shares.map(each => <div className="transition-all ease-in-out duration-100 flex font-bold">
-                    <div className="px-3 flex items-center border transition-all duration-300">
-                        {each.icon}
-                        <span className={`${isOpen ? 'ml-7' : 'hidden'} font-normal w-[131px] italic  transition-all ease-in-out duration-100`}>{each.name}</span>
-                        <span className="w-4"></span>
-                    </div>
-                    <input className={`w-32 border-r border-t border-b p-0,5`} />
-                    <input className="w-32 border-r border-t border-b p-0,5" />
-                  </div>)
-
-                }
-                <div>
-                <div className="transition-all  ease-in-out duration-100 flex font-bold">
-                  <div onClick={() => setAccordion({...accordion, captialGainsOtherAssets: !accordion.captialGainsOtherAssets})} className="cursor-pointer px-3 flex items-center border bg-blue-50 text-blue-500 hover:text-blue-700">
-                    <IoHome className="mx-3.5"/>
-                      <span className={`${isOpen ? 'ml-5' : 'hidden'} w-[139px]  flex gap-2 italic `}>Other Assets</span> 
-                      {accordion.captialGainsOtherAssets ? <IoArrowDown  /> : <IoArrowUp  />}
-                  </div>
-                  <input className={`w-32 border-r border-t border-b p-0.5`} />
-                  <input className="w-32 border-r border-t border-b p-0,5" />
-                </div>
-                {
-                  accordion.captialGainsOtherAssets && data.Computation["Capital Gains"]["Other Assets"].map(each => <div className="transition-all ease-in-out duration-100 flex font-bold">
-                    <div className="px-3 flex items-center border transition-all duration-300">
-                        {each.icon}
-                        <span className={`${isOpen ? 'ml-7' : 'hidden'} font-normal w-[131px] italic`}>{each.name}</span>
-                        <span className="w-4"></span>
-                    </div>
-                    <input className={`w-32 border-r border-t border-b p-0,5`} />
-                    <input className="w-32 border-r border-t border-b p-0,5" />
-                  </div>)
-                }
-                </div>
-                
-                </>
-                
-                }
-                {data.Computation.ComputationTwo.map(each => <div className="transition-all ease-in-out duration-100 flex font-bold">
-                    <div className="px-3 flex items-center border transition-all duration-300">
-                        {each.icon}
-                        <span className={`${isOpen ? 'ml-2' : 'hidden'} font-normal  w-[151px]  transition-all ease-in-out duration-100`}>{each.name}</span>
-                        <span className="w-4"></span>
-                    </div>
-                    <input className={`w-32 border-r border-t border-b p-0,5`} />
-                    <input className="w-32 border-r border-t border-b p-0,5" />
-                  </div>)
-                }
-              </div>
+          {selectedBtn === 'computation' &&
+          <Computation accordion={accordion} isOpen={isOpen} data={data} setAccordion={setAccordion} setSelectedBtn={setSelectedBtn} />
           }
-          
-        </div>
-            {selectedBtn === 'dashboard' && <h1>Dashboard</h1>}
-            {selectedBtn === 'computation' && <h1>Computation</h1>}
-            {selectedBtn === 'balance sheet' && <h1>Balance sheet</h1>}
-            {selectedBtn === 'audit  Reoort' && <h1>Audit  Reoort</h1>}
-            {selectedBtn === 'online Activities' && <h1>Online Activities</h1>}
-            {selectedBtn === 'reports' && <h1>Reports</h1>}
-          </div>
-          <div className="h-[20%] flex flex-col">
-            <button onClick={() => setSelectedBtn('dashboard')} className={`${selectedBtn === "dashboard" && "bg-blue-600"} flex items-center bg-neutral-100 text-md font-semibold border-b-1 hover:bg-blue-100 transition-all duration-300`}><MdOutlineDashboard className="mr-2"/>
-            Dashboard</button>
-            <button onClick={() => setSelectedBtn('computation')} className="flex items-center  bg-neutral-100 text-md font-semibold border-b-1 hover:bg-blue-100 transition-all duration-300"><MdOutlineDashboard className="mr-2"/>
+          {selectedBtn === 'balance sheet' && <>
+            <div className="transition-all  ease-in-out duration-100 flex font-bold">
+              <div onClick={() => {!accordion.balanceSheet && setSelectedBtn(""); setAccordion({...accordion, balanceSheet: !accordion.balanceSheet})}} className="cursor-pointer px-3 flex items-center border bg-blue-50 text-blue-500 hover:text-blue-700">
+                <IoHome className="mx-3.5"/>
+                  <span className={`${isOpen ? 'ml-2' : 'hidden'} w-[151px] flex gap-2 `}>Balance Sheet</span> 
+                  {accordion.balanceSheet ? <IoArrowDown  /> : <IoArrowUp  />}
+              </div>
+              <input className={`w-32 border-r border-t border-b p-0.5`} />
+              <input className="w-32 border-r border-t border-b p-0,5" />
+            </div>    
+            {
+              accordion?.balanceSheet && data?.BalanceSheet?.map((each, i) => <div key={i} className="transition-all ease-in-out duration-100 flex font-bold">
+                <div onClick={() => setRightContent(each)} className="cursor-pointer px-3 flex items-center border transition-all duration-300">
+                    <IoHome className="mx-3.5"/>
+                    <span className={`${isOpen ? 'ml-2' : 'hidden'} w-[151px] font-normal   transition-all ease-in-out duration-100`}>{each}</span>
+                    <span className="w-4"></span>
+                </div>
+                <input className={`w-32 border-r border-t border-b p-0,5`} />
+                <input className="w-32 border-r border-t border-b p-0,5" />
+                </div>
+              )
+            }        
+          </>}
+          {selectedBtn === 'audit  Reoort' && <>
+            <div className="transition-all  ease-in-out duration-100 flex font-bold">
+              <div onClick={() => {!accordion.balanceSheet && setSelectedBtn(""); setAccordion({...accordion, balanceSheet: !accordion.balanceSheet})}} className="cursor-pointer px-3 flex items-center border bg-blue-50 text-blue-500 hover:text-blue-700">
+                <IoHome className="mx-3.5"/>
+                  <span className={`${isOpen ? 'ml-2' : 'hidden'} w-[151px] flex gap-2 `}>Audit Reoort</span> 
+                  <span className="w-4"></span>
+              </div>
+              <input className={`w-32 border-r border-t border-b p-0.5`} />
+              <input className="w-32 border-r border-t border-b p-0,5" />
+            </div>    
+          </>}
+          {selectedBtn === 'online Activities' && <>
+            <div className="transition-all  ease-in-out duration-100 flex font-bold">
+              <div className="cursor-pointer px-3 flex items-center border bg-blue-50 text-blue-500 hover:text-blue-700">
+                <IoHome className="mx-3.5"/>
+                  <span className={`${isOpen ? 'ml-2' : 'hidden'} w-[151px] flex gap-2 `}>Online Activities</span> 
+                  <span className="w-4"></span>
+              </div>
+              <input className={`w-32 border-r border-t border-b p-0.5`} />
+              <input className="w-32 border-r border-t border-b p-0,5" />
+            </div>    
+          </>}{selectedBtn === 'reports' && <>
+            <div className="transition-all  ease-in-out duration-100 flex font-bold">
+              <div className="cursor-pointer px-3 flex items-center border bg-blue-50 text-blue-500 hover:text-blue-700">
+                <IoHome className="mx-3.5"/>
+                  <span className={`${isOpen ? 'ml-2' : 'hidden'} w-[151px] flex gap-2 `}>Reports</span> 
+                  <span className="w-4"></span>
+              </div>
+              <input className={`w-32 border-r border-t border-b p-0.5`} />
+              <input className="w-32 border-r border-t border-b p-0,5" />
+            </div>    
+          </>}
+          <div className="flex flex-col border-r border-l">
+            <button onClick={() => {setSelectedBtn('computation')}} className="flex items-center  bg-neutral-100 text-md font-semibold border-b-1 hover:bg-blue-100 transition-all duration-300"><MdOutlineDashboard className="mr-2"/>
             Computation</button>
             <button onClick={() => setSelectedBtn('balance sheet')} className="flex items-center bg-neutral-100 text-md font-semibold border-b-1 hover:bg-blue-100 transition-all duration-300"><MdOutlineDashboard className="mr-2"/>
             Balance sheet</button>
@@ -511,18 +349,58 @@ const EachClientData = () => {
             Reports</button>
           </div>
         </div>
-        <div>
-          <div>
-            {selectedBtn === 'dashboard' && <h1>Dashboard</h1>}
-            {selectedBtn === 'computation' && <h1>Computation</h1>}
-            {selectedBtn === 'balance sheet' && <h1>Balance Sheet</h1>}
-            {selectedBtn === 'audit  Reoort' && <h1>Audit  Reoort</h1>}
-            {selectedBtn === 'online Activities' && <h1>Online Activities</h1>}
-            {selectedBtn === 'reports' && <h1>Reports</h1>}
-          </div>
+        <div className="w-full">
+          {
+            rightContent === data?.BalanceSheet[0] && <div><h1 className="font-bold">{rightContent}</h1></div>
+          }
+          {
+            rightContent === data?.BalanceSheet[1] && <div><h1 className="font-bold">{rightContent}</h1></div>
+          }{
+            rightContent === data?.BalanceSheet[2] && <div><h1 className="font-bold">{rightContent}</h1></div>
+          }{
+            rightContent === data?.BalanceSheet[3] && 
+            <div  className="w-full">
+              <div className=" border border-b-0 flex items-center justify-between">
+                <h1 className="font-bold pl-2">{rightContent}</h1>
+                <div className="flex ">
+                  <p className="border-l  min-w-[250px] text-center pl-2 py-1.5" >31st March {currentYear}</p>
+                  <p className="border-l min-w-[250px] text-center">31st March {currentYear-1}</p>
+                </div>
+              </div>
+              <div>
+                <details className="">
+                  <summary  className="border w-full px-3">
+                    Revenue From Operations
+                  </summary>
+                  <div  className="pl-6  border border-t-0 flex items-center justify-between">
+                    <p>(a) Sale Of Product</p>
+                    <div className="">
+                      <input className="border-l !w-[250px]"/>
+                      <input className="border-l !w-[250px]"/>
+                    </div>
+                  </div>
+                </details>
+              </div>
+            </div>
+          }{
+            rightContent === data?.BalanceSheet[4] && <div>
+              <h1 className="font-bold">{rightContent}</h1>
+              
+              </div>
+          }
+          {
+            rightContent === data?.BalanceSheet[5] && <div><h1 className="font-bold">{rightContent}</h1></div>
+          }
+          {
+            rightContent === data?.BalanceSheet[6] && <div><h1 className="font-bold">{rightContent}</h1></div>
+          }{
+            rightContent === data?.BalanceSheet[7] && <div><h1 className="font-bold">{rightContent}</h1></div>
+          }{
+            rightContent === data?.BalanceSheet[8] && <div><h1 className="font-bold">{rightContent}</h1></div>
+          }
+          
         </div>
-      <div>
-      </div>
+      
       </div>
     </div>
   );
