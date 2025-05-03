@@ -25,7 +25,6 @@ const   NavItems = (props: { itemDetails: ItemDetails; isOpen?: boolean; onNavIt
         <span className={`${isOpen? "": "text-md py-1 m-auto"}`}>{itemDetails.icon}</span>
         <p className={`${isOpen? "" : "hidden"} transition-all duration-100 ease-in-out`}>{itemDetails.name}</p>
       </Link>
-      
     </li>
   )
 }
