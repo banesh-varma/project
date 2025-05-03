@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { all } from "../../dummyClinets";
 import { useParams } from "react-router-dom";
 import { FaAngleDown } from "react-icons/fa";
@@ -8,6 +8,8 @@ import { IoHome } from 'react-icons/io5';
 import { FaChevronDown, FaChevronRight } from 'react-icons/fa';
 import DashBoard from "../DashBoard";
 import Computation from "./computation";
+import RevenueFromOperations from "./revenueFromOperations";
+import OtherIncome from "./OtherIncome";
 
 function EachHeading({ children, className }) {
   return (
@@ -63,6 +65,7 @@ const data = {
 
 const EachClientData = () => {
   const params = useParams();
+  const currentYear = new Date().getFullYear();
   const [selected, setSelected] = useState('dashboard')
   const [accordion, setAccordion] = useState({computation: true, pgbp: true, pgbpPresemptive: true, pgbpNormalIncom: true, captialGains:true, captialGainsShares:true, captialGainsOtherAssets:true, taxThereon:true, netTax:true, balanceSheet:true})
   const { id } = params;
@@ -72,7 +75,6 @@ const EachClientData = () => {
 
   const [isOpen, setIsOpen] = useState(true);
 
-  const currentYear = new Date().getFullYear();
   const flattenData = (obj, level = 0, parentKey = null) => {
     let rows = [];
     for (const key in obj) {
@@ -110,8 +112,6 @@ const EachClientData = () => {
   const [openSection, setOpenSection] = useState(null); // To manage the single open section
   const [openSections, setOpenSections] = useState(new Set());
   const [rightContent, setRightContent] = useState("")
-  console.log(rightContent)
-
 
   // Improved filtering logic based on the single open section
   const filteredRows = useMemo(() => {
@@ -360,8 +360,33 @@ const EachClientData = () => {
           }{
             rightContent === data?.BalanceSheet[3] && 
             <div  className="w-full">
-              <div className=" border border-b-0 flex items-center justify-between">
-                <h1 className="font-bold pl-2">{rightContent}</h1>
+              <div className="font-bold border border-b-0 flex items-center justify-between">
+                <h1 className=" pl-2">{rightContent}</h1>
+                <div className="flex ">
+                  <p className="border-l  min-w-[250px] text-center pl-2 py-1.5" >31st March {currentYear}</p>
+                  <p className="border-l min-w-[250px] text-center">31st March {currentYear-1}</p>
+                </div>
+              </div>
+              <div>
+                <details className="">
+                  <summary  className="border w-full px-3 font-medium">
+                    Revenue From Operations
+                  </summary>
+                  <RevenueFromOperations/>
+                </details>
+                <details className="">
+                  <summary  className="border border-t-0 w-full px-3 font-medium">
+                    Other Income
+                  </summary>
+                  <OtherIncome/>
+                </details>
+              </div>
+            </div>
+          }{
+            rightContent === data?.BalanceSheet[4] && <div>
+              <div  className="w-full">
+              <div className="font-bold border border-b-0 flex items-center justify-between">
+                <h1 className=" pl-2">{rightContent}</h1>
                 <div className="flex ">
                   <p className="border-l  min-w-[250px] text-center pl-2 py-1.5" >31st March {currentYear}</p>
                   <p className="border-l min-w-[250px] text-center">31st March {currentYear-1}</p>
@@ -372,19 +397,10 @@ const EachClientData = () => {
                   <summary  className="border w-full px-3">
                     Revenue From Operations
                   </summary>
-                  <div  className="pl-6  border border-t-0 flex items-center justify-between">
-                    <p>(a) Sale Of Product</p>
-                    <div className="">
-                      <input className="border-l !w-[250px]"/>
-                      <input className="border-l !w-[250px]"/>
-                    </div>
-                  </div>
+                  <RevenueFromOperations/>
                 </details>
               </div>
             </div>
-          }{
-            rightContent === data?.BalanceSheet[4] && <div>
-              <h1 className="font-bold">{rightContent}</h1>
               
               </div>
           }

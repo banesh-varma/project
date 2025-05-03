@@ -4,7 +4,7 @@ const Computation = ({accordion, isOpen, data, setAccordion, setSelectedBtn }) =
     return (
         <>
             <div className="transition-all  ease-in-out duration-100 flex font-bold">
-                <div onClick={() => {!accordion.computation && setSelectedBtn(""); setAccordion({...accordion, computation: !accordion.computation})}} className="cursor-pointer px-3 flex items-center border bg-blue-50 text-blue-500 hover:text-blue-700">
+                <div onClick={() => {accordion.computation && setSelectedBtn(""); setAccordion({...accordion, computation: !accordion.computation})}} className="cursor-pointer px-3 flex items-center border bg-blue-50 text-blue-500 hover:text-blue-700">
                 <IoHome className="mx-3.5"/>
                     <span className={`${isOpen ? 'ml-2' : 'hidden'} w-[151px] flex gap-2 `}>Computation </span> 
                     {accordion.computation ? <IoArrowDown  /> : <IoArrowUp  />}
@@ -13,7 +13,7 @@ const Computation = ({accordion, isOpen, data, setAccordion, setSelectedBtn }) =
                 <input className="w-32 border-r border-t border-b p-0,5" />
             </div>
             {
-                !accordion.computation &&
+                accordion.computation &&
                 <div className="">
                     <div className="transition-all ease-in-out duration-100 flex font-bold">
                     <div className="px-3 flex items-center border transition-all duration-300">
