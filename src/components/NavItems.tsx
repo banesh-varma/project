@@ -11,6 +11,7 @@ interface ItemDetails {
 const   NavItems = (props: { itemDetails: ItemDetails; isOpen?: boolean; onNavItemClick?: () => void; }) => {
   const [location, setLocation] = useState(false)
     const {itemDetails, isOpen} = props
+    
     const l = useLocation()
 
     useEffect(()=>{

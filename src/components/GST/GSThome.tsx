@@ -23,7 +23,7 @@ import { MdDesignServices } from "react-icons/md";
 import { SlPaypal } from "react-icons/sl";
 import { SiLinuxprofessionalinstitute } from "react-icons/si";
 import Header from "../Header";
-import { Link, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 const GSTNavItems = [
@@ -89,9 +89,16 @@ const GSTNavItems = [
         icon: <SiLinuxprofessionalinstitute />
     },
 ]
+const inventory = [
+  {name: 'Stock Category'},
+  {name: 'Stock Group'},
+  {name: 'Rawmaterial'}
+]
+
 
 const GstLayout = () => {
     const [isOpen, changeIsOpen] = useState(false)
+    const [activeNavItem, setActiveNavItem] = useState("Inventory")
     const [selectedItem, setSelectedItem] = useState('')
     const {pathname} = window.location
 
@@ -128,6 +135,16 @@ const GstLayout = () => {
 
     useWindowWidth() 
 
+    const HandleInventory = () =>  {
+        return (
+            <ul>
+            {inventory.map(invent => (
+                <li className="bg-neutral-200 mb-1 border px-1">{invent.name}</li>
+            ))}
+        </ul>
+        )
+    }
+
     return (
         <div className="h-screen w-full">
         <Header/>
@@ -142,11 +159,12 @@ const GstLayout = () => {
                             <li
                             key={eachItem.name}
                             title={eachItem.name}
+                            onClick={() => setActiveNavItem(eachItem.name)}
                             className={`${
                                 selectedItem === eachItem.name ? "bg-blue-400" : ""
                             } flex gap-2 items-center transition-all mx-1 hover:text-black bg-gray-50 hover:bg-blue-300/50 px-2.5 py-1 border-b-2 border-amber-950 scale-105 hover:scale-105`}
                             >
-                            <Link to={`/${eachItem.name}`} relative="path" className="w-full flex gap-3 items-center">
+                            {/* <Link to={`/${eachItem.name}`} relative="path" className="w-full flex gap-3 items-center"> */}
                                 <span className={`${isOpen ? "" : "text-md"}`}>{eachItem.icon}</span>
 
                                 {/* Here's the fix: use opacity and width/overflow to hide text smoothly */}
@@ -157,7 +175,7 @@ const GstLayout = () => {
                                 >
                                 {eachItem.name}
                                 </p>
-                            </Link>
+                            {/* </Link> */}
                             </li>
                         ))}
                         </ul>
@@ -166,9 +184,13 @@ const GstLayout = () => {
             <div className="w-full h-full">
                 <Outlet/>
             </div>
-            <div className="min-w-50 max-w-52 h-[103vh] overflow-y-auto bg-gray-50 p-2 border-gr border-l-1 transition-all duration-200 ease-in-out">
-                hai good morning have a great day
-            </div>
+            {activeNavItem === "Inventory" &&
+              <div className="min-w-50 max-w-52 h-[103vh] overflow-y-auto bg-gray-50 p-2 border-gr border-l-1 transition-all duration-200 ease-in-out">
+                <h1 className="text-xl font-semibold">Rawmateril</h1>
+                <HandleInventory />
+                <h1 className="text-xl font-semibold">Finished Good</h1>
+                <HandleInventory/>
+              </div>}
         </div>
     </div>
     )

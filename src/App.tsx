@@ -11,6 +11,10 @@ import LoginWithCarousel from './landingPage'
 import ItrLayout from './components/ITR/ItrLayout'
 import GstLayout from './components/GST/GSThome'
 import GstFInancial from './components/GST/gstFinancial'
+import CmaLayout from './components/CMA/CmaLayout'
+import Project from './components/CMA/Project'
+import Workings from './components/CMA/Workings'
+import { Profile } from './components/CMA/Profile'
 
 function App() {
   useEffect(() => {
@@ -54,6 +58,12 @@ function App() {
             </Route>          
             <Route path='/gst' element={<GstLayout/>}>
               <Route path="" element={<GstFInancial/>}/>
+            </Route>
+            <Route path='/cma' element={<CmaLayout/>}>
+              <Route path='' element={<DashBoard />} />
+              <Route path='project' element={<Project />} />
+              <Route path='workings' element={<Workings />} />
+              <Route path='profile' element={<Profile />} />
             </Route>
         </Routes>
       </BrowserRouter>
