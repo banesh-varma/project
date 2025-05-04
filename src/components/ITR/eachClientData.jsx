@@ -161,8 +161,8 @@ const EachClientData = () => {
   };
 
   return (
-    <div className="rounded-md px-0.5 py-1 space-y-1">
-      <div className="flex h-[18h] w-full">
+    <div className="px-3 rounded-md mt-2  py-1 space-y-1">
+      <div className="flex h-[18h] w-full mb-2">
         <EachHeading className="min-w-[60px] border-r-0">
           <img
             src="https://img.freepik.com/free-vector/smiling-young-man-illustration_1308-173524.jpg?t=st=1745915434~exp=1745919034~hmac=89d8e5fb7f21d63740f5756552c34d302b9e03051cfd33e7273eea04ad870f7f&w=740"
@@ -253,7 +253,7 @@ const EachClientData = () => {
           </div>
         ))}
       </div> */}
-      <div className="flex gap-5">
+      <div className="flex gap-5 ">
         <div>
           <div className=" flex font-bold">
             <div className="px-0.5 flex items-center border transition-all duration-300">

@@ -3,7 +3,7 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import './App.css'
 import DashBoard from './components/DashBoard'
 import Clinets from './components/CRM/Clinets'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import AllClients from './components/ITR/allClientsPage'
 import CrmLayout from './components/CRM/CrmLayout'
 import EachClientData from './components/ITR/eachClientData'
@@ -27,10 +27,31 @@ function App() {
     };
   }, []);
 
+  function useWindowWidth() {
+    const [width, setWidth] = useState(window.innerWidth);
+  
+    useEffect(() => {
+      function handleResize() {
+        setWidth(window.innerWidth);
+      }
+  
+      window.addEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
+    }, []);
+  
+    return width;
+  }
+
+  const width = useWindowWidth();
   return (
     <div className='h-screen w-full'>
-      <BrowserRouter>
+      {
+        width < 1000 ? <div className='h-screen w-full flex flex-col justify-center items-center'>
+        <h1 className='text-2xl text-center'>Please use a larger screen</h1>
+        <h1 className='text-2xl text-center'>This application is not supported on smaller screens</h1>
+      </div> :
       
+      <BrowserRouter>
         <Routes>
             {/* CRM routes wrapped in layout */}
             <Route path='/' element={<LoginWithCarousel />} />
@@ -67,6 +88,7 @@ function App() {
             </Route>
         </Routes>
       </BrowserRouter>
+      }
     </div>
   )
 }
