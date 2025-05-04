@@ -24,3 +24,23 @@ button{
     scrollbar-width: thin;
     scrollbar-color: #888 transparent;
   }
+
+/* Tailwind-compatible custom arrow */
+summary::-webkit-details-marker {
+    display: none; /* hide native arrow */
+  }
+  
+  .details-arrow {
+    content: '';
+    border: solid black;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 4px;
+    transform: rotate(45deg); /* closed state */
+  }
+  
+  /* when open, rotate the arrow */
+  details[open] .details-arrow {
+    transform: rotate(317deg);
+  }
+  
