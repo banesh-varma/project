@@ -23,19 +23,20 @@ const Header = () => {
     <div className="bg-blue-800 font-medium text-white flex justify-between items-center border-solid border-black border-b-1 px-3 fixed-top py-3">
       <div className="w-130 flex justify-between">
       <h1 className="font-bold text-shadow-md text-shadow-blue-900">N SHIVA PRASAD CO.</h1>
-          <select
-            className="rounded outline-0 bg-white text-black px-3"
-            onChange={(e) => {
-              let selectedValue : string | undefined = undefined
-              selectedValue = e.target.value;
-              navigate(`/${selectedValue.toLowerCase()}`);
-            }}
-            value={currentPath.toUpperCase()}
-          >
-            {listRoutings.map(each => (
-              <option key={each} value={each}>{each}</option>
-            ))}
-          </select>
+      <select className="rounded outline-0 bg-white text-black px-3"
+        onChange={(e) => {
+          const selectedValue = e.target.value;
+          if (selectedValue) {
+            window.open(`/${selectedValue.toLowerCase()}`, '_blank');
+          }
+        }}
+        value={currentPath.toUpperCase()}
+      >
+        {listRoutings.map(each => (
+          <option key={each} value={each}>{each}</option>
+        ))}
+      </select>
+
         </div>
       </div>
   );

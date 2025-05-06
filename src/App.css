@@ -44,3 +44,6 @@ summary::-webkit-details-marker {
     transform: rotate(317deg);
   }
   
+  details , summary{
+    outline: none;
+  }

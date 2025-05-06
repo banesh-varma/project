@@ -365,36 +365,44 @@ const EachClientData = () => {
                 <option>Business 1</option>
                 <option>Business 1</option>
               </select>
-              <div className="font-bold border border-b-0 flex items-center justify-between   ">
-                <h1 className=" pl-2">{rightContent}</h1>
-                <div className="flex ">
-                <span className="border-l min-w-[150px] text-center pl-2 flex items-center justify-between px-2">Group</span>
-                  <p className="border-l min-w-[200px] text-center  py-1.5" >31st March {currentYear}</p>
-                  <p className="border-l min-w-[200px] text-center">31st March {currentYear-1}</p>
-
+              <div className="font-bold border border-b-0 flex justify-between border-b-black ">
+                <div className="flex">
+                  <span className="pl-2 border-r min-w-64">{rightContent}</span>
+                  <span className="border-r min-w-24 text-center pt-1.5">Note</span>
                 </div>
-                
+                <div className="flex">
+                  <span className="border-l min-w-[150px] text-center flex items-center justify-between px-2">Group</span>
+                  <p className="border-l min-w-[200px] text-center py-1.5">31st March {currentYear}</p>
+                  <p className="border-l min-w-[200px] text-center">31st March {currentYear - 1}</p>
+                </div>
               </div>
-              <div>
-                <details className="border-4  w-full">
+              <div className="border border-t-0">
+              <details className="w-full">
+                <summary className="flex items-center justify-between w-full pl-3 cursor-pointer list-none border-t border-b border-t-black border-gray-300">
+                  <span className="flex items-center gap-3">
+                    <span className="inline-block w-2 h-2 rotate-0 transition-transform details-arrow" />
+                    <span className="font-medium min-w-[210px]">Revenue From Operations</span>
+                    <span className="border-x border-gray-300 min-w-[97px] text-center">19</span>
+                  </span>
+                  <span className="flex">
+                    <span className="border-l min-w-[200px] text-center flex items-center justify-between px-2">
+                      <span>Total in Rs.</span> <strong>0/-</strong>
+                    </span>
+                    <span className="border-l min-w-[200px] text-center flex items-center justify-between px-2">
+                      <span>Total in Rs.</span> <strong>0/-</strong>
+                    </span>
+                  </span>
+                </summary>
+                <div className="">
+                  <RevenueFromOperations />
+                </div>
+              </details>
+                <details className="border-t-0  w-full">
                   <summary className=" flex items-center justify-between w-full pl-3 cursor-pointer list-none">
                     <span className="flex items-center gap-3">
                       <span className="inline-block w-2 h-2 rotate-0 transition-transform details-arrow" />
-                      <span className="font-medium">Revenue From Operations</span>
-                    </span>
-                    <span className="flex">
-                      <span  className="border-l min-w-[200px] text-center pl-2 flex items-center justify-between px-2"><span>Total in Rs.</span> <strong>0/-</strong></span>
-                      <span className="border-l min-w-[200px] text-center flex items-center justify-between px-2"><span>Total in Rs.</span> <strong>0/-</strong></span>
-                    </span>
-                  </summary>
-                  <RevenueFromOperations/>
-                </details>
-
-                <details className="border-4 border-t-0  w-full">
-                  <summary className=" flex items-center justify-between w-full pl-3 cursor-pointer list-none">
-                    <span className="flex items-center gap-3">
-                      <span className="inline-block w-2 h-2 rotate-0 transition-transform details-arrow" />
-                      <span className="font-medium">Other Income</span>
+                      <span className="font-medium min-w-[210px]">Other Income</span>
+                      <span className="border-x min-w-[97px] border-gray-300 text-center">20</span>
                     </span>
                     <span className="flex">
                       <span  className="border-l min-w-[200px] text-center pl-2 flex items-center justify-between px-2"><span>Total in Rs.</span> <strong>0/-</strong></span>
