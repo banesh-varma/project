@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { all } from "../../dummyClinets";
 import { useParams } from "react-router-dom";
 import { FaAngleDown } from "react-icons/fa";
@@ -138,8 +138,6 @@ const EachClientData = () => {
   
     return result;
   }, [rawRows, openSections]);
-  
-  
 
   const handleSectionToggle = (row) => {
     if (!row.isParent || !row.hasChildren) return;
@@ -154,105 +152,40 @@ const EachClientData = () => {
       return newSet;
     });
   };
-  
 
   const toggleOpen = () => {
     setIsOpen(!isOpen)
   };
 
   return (
-    <div className="px-3 rounded-md mt-2  py-1 space-y-1">
-      <div className="flex h-[18h] w-full mb-2">
-        <EachHeading className="min-w-[60px] border-r-0">
+    <div className="px-3 rounded-md mt-2  py-1 space-y-1 overflow-x-auto">
+      <div className="flex mb-2">
+        <EachHeading className="min-w-[60px] border-r-0 flex-[0_0_auto]">
           <img
             src="https://img.freepik.com/free-vector/smiling-young-man-illustration_1308-173524.jpg?t=st=1745915434~exp=1745919034~hmac=89d8e5fb7f21d63740f5756552c34d302b9e03051cfd33e7273eea04ad870f7f&w=740"
-            className=" mx-auto rounded-full object-fit w-[110px]"
+            className="mx-auto rounded-full object-fit w-[110px]"
             alt="profile"
           />
         </EachHeading>
-        <EachHeading className="min-w-[200px] text-xs md:text-sm border-r-0">
+        <EachHeading className="flex-1 text-xs md:text-sm border-r-0 min-w-[150px]">
           <p>Group Details</p>
         </EachHeading>
-        <EachHeading className="w-[20%] min-w-[200px] text-xs md:text-sm border-r-0">
+        <EachHeading className="flex-1 text-xs md:text-sm border-r-0 min-w-[150px]">
           <p>Group Details</p>
         </EachHeading>
-        <EachHeading className="w-[20%] min-w-[200px] text-xs md:text-sm border-r-0">
+        <EachHeading className="flex-1 text-xs md:text-sm border-r-0 min-w-[150px]">
           <p>ID Details</p>
         </EachHeading>
-        <EachHeading className="w-[20%] min-w-[200px] text-xs md:text-sm border-r-0">
+        <EachHeading className="flex-1 text-xs md:text-sm border-r-0 min-w-[150px]">
           Residence Address
         </EachHeading>
-        <EachHeading className="w-[20%] min-w-[200px] text-xs md:text-sm border-r-0">
+        <EachHeading className="flex-1 text-xs md:text-sm border-r-0 min-w-[200px]">
           Business Address
         </EachHeading>
-        <EachHeading className="w-[20%] min-w-[200px] text-xs md:text-sm">
+        <EachHeading className="flex-1 text-xs md:text-sm min-w-[200px]">
           Communication
         </EachHeading>
       </div>
-      {/* <div className="font-sans text-sm">
-        Header row
-        <div className=" flex font-bold">
-          <div
-            className="px-0.5 flex items-center border transition-all duration-300"
-            style={{ width: isOpen ? '269px' : `${62 + maxIndentLevel * 24.5}px` }}
-          >
-            <button
-              onClick={toggleOpen}
-              className="mx-2 p-1 bg-blue-800 text-white rounded hover:bg-blue-600"
-            >
-              {isOpen ? <MdChevronLeft size={20} /> : <MdChevronRight size={20} />}
-            </button>
-            <span className={isOpen ? 'ml-2' : 'ml-2 opacity-0'}>Asst. Year</span>
-          </div>
-          <select className={`${isOpen ? 'w-[128px]' : 'w-[127px]'} border-r border-t border-b p-2`}>
-            <option>{currentYear - 1} - {currentYear}</option>
-            <option>{currentYear - 2} - {currentYear - 1}</option>
-            <option>{currentYear - 3} - {currentYear - 2}</option>
-          </select>
-          <select className="w-32 border-r border-t border-b p-2">
-            <option>{currentYear - 2} - {currentYear - 1}</option>
-            <option>{currentYear - 3} - {currentYear - 2}</option>
-            <option>{currentYear - 4} - {currentYear - 3}</option>
-          </select>
-        </div>
-
-        Data rows
-        {filteredRows.map((row, idx) => (
-          <div key={row.key} className=" flex  border-t-0">
-            <div
-              className="px-0.5 flex items-center border-r border-l border-b transition-all duration-300"
-              style={{ width: isOpen ? '269px' : `${62 + maxIndentLevel * 24}px` }}
-            >
-              <div
-                className=" flex items-center cursor-pointer w-full"
-                style={{ marginLeft: `${row.level * 24}px` }}
-                onClick={() => handleSectionToggle(row)}
-              >
-                <div className="w-full flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <IoHome className="mr-2" size={18} />
-                    <span className={isOpen ? (row.isParent ? 'font-bold' : '') : 'opacity-0 w-1'}>
-                      {row.label}
-                    </span>
-                  </div>
-                  {row.isParent && row.hasChildren && (
-                    <span className="mr-1 ">
-                      {openSections.has(row.key) ? <FaChevronDown size={10} /> : <FaChevronRight size={10} />}
-                    </span>
-                  )}
-
-                </div>
-              </div>
-            </div>
-            <div className="w-32 border-r border-b p-2">
-              <input className="w-full outline-none" />
-            </div>
-            <div className="w-32 border-r border-b p-2">
-              <input className="w-full outline-none" />
-            </div>
-          </div>
-        ))}
-      </div> */}
       <div className="flex gap-5 ">
         <div>
           <div className=" flex font-bold">
@@ -365,9 +298,9 @@ const EachClientData = () => {
                 <option>Business 1</option>
                 <option>Business 1</option>
               </select>
-              <div className="font-bold border border-b-0 flex justify-between border-b-black ">
+              <div className="font-bold border border-b-0 flex justify-between gap-5 border-b-black ">
                 <div className="flex">
-                  <span className="pl-2 border-r min-w-64">{rightContent}</span>
+                  <h1 className="pl-2 border-r min-w-64">{rightContent}</h1>
                   <span className="border-r min-w-24 text-center pt-1.5">Note</span>
                 </div>
                 <div className="flex">

@@ -16,6 +16,18 @@ label{
     font-size: 16px;
 }
 
+@media (max-width: 1200px) {
+  h1{
+      font-size: 16px;
+  }
+  h2{
+      font-size: 14px;
+  }
+  label{
+    font-size: 12px;
+  }
+} 
+
 button{
     cursor: pointer;
 }
