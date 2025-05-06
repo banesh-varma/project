@@ -1,25 +1,50 @@
 export const ProjectDetails = () => {
   return (
     <div>
-      <div className="rounded border m-1 border-neutral-300 pb-1 shadow-sm mb-4">
+      <div className="rounded border m-1 border-neutral-400 shadow-sm mb-4">
         <div className="border-b-1 border-neutral-300 px-1.5 mt-2">
           <h1 className="font-semibold">Project Details</h1>
         </div>
         <div className="rounded border m-1 border-neutral-300 pb-2">
           <div className="grid grid-cols-12 space-x-4 p-1.5">
-            <div className="lg:col-span-4 md:col-span-8 col-span-12 grid gap-y-1">
+            <div className="lg:col-span-3 md:col-span-4 col-span-12 grid">
+              <br />
               <label htmlFor="">Audited / Actual Financial Details</label>
               <label htmlFor="">Previous Year</label>
               <label htmlFor="">Projections Required for Year</label>
               <label htmlFor="">Figurers Required in </label>
             </div>
+            <div className="grid grid-cols-12 col-span-12 lg:col-span-2 md:col-span-6 pt-2">
+              <input className="col-span-2" />
+              <label htmlFor="" className="col-span-5">No</label>
+              <label htmlFor="" className="col-span-5">Year</label>
+              <div className="col-span-2 flex justify-center items-center">
+                <input type="checkbox" />
+              </div>
+              <input type="text" className="border border-b-0 col-span-5 py-0.5" />
+              <input type="text" className="border border-b-0 border-l-0 col-span-5" />
+              <div className="flex justify-center items-center col-span-2">
+                <input type="checkbox" />
+              </div>
+              <input type="text" className="border border-b-0 col-span-5 py-0.5" />
+              <input type="text" className="border border-b-0 border-l-0 col-span-5" />
+              <div className="flex justify-center items-center col-span-2">
+                <input type="checkbox" />
+              </div>
+              <input type="text" className="border border-b-0 col-span-5 py-0.5" />
+              <input type="text" className="border border-b-0 border-l-0 col-span-5" />
+              <div className="text-center col-span-2">
+                <span></span>
+              </div>
+              <h1 className="border col-span-10 py-1 px-1.5">dodbox</h1>
+            </div>
           </div>
         </div>
       </div>
-      <div className="rounded border m-1 border-neutral-300 pb-2">
+      <div className="rounded border m-1 border-neutral-400 shadow-sm mb-4">
         <div className="grid grid-cols-12 border-b-1 border-neutral-300 mt-1 px-1.5 mb-1.5">
           <h1 className="col-span-9 md:col-span-10 lg:col-span-11 font-semibold">Cost of Project</h1>
-          <p className="col-span-3 md:col-span-2 lg:col-span-1 text-center">Amount</p>
+          <p className="col-span-3 md:col-span-2 lg:col-span-1">Amount</p>
         </div>
         <div className="rounded border m-1 border-neutral-300 pb-2 mb-2 shadow-sm">
           <div className="grid grid-cols-12 px-1 py-1">
@@ -235,10 +260,88 @@ export const ProjectDetails = () => {
             </div>
           </div>
         </div>
-        <div className="rounded border m-1 border-neutral-300 px-1.5 shadow-sm py-1 mb-3">
+        <div className="rounded border m-1 border-neutral-300 px-1.5 shadow-sm py-1">
           <h1 className="">Total</h1>
         </div>
       </div>
+      <div className="rounded border m-1 border-neutral-400 shadow-sm mb-4">
+        <div className="grid grid-cols-12 border-b-1 border-neutral-300 mt-1 px-1.5 mb-1.5">
+          <h1 className="col-span-9 md:col-span-10 lg:col-span-11 font-semibold">Means of Finance</h1>
+          <p className="col-span-3 md:col-span-2 lg:col-span-1">Amount</p>
+        </div>
+        <div className="rounded border m-1 border-neutral-300 pb-2 mb-2 shadow-sm">
+          <div className="grid grid-cols-12 px-1 py-1">
+            <h1 className="col-span-9 md:col-span-10 lg:col-span-11 font-semibold">Promotors / Proprietors Contribution</h1>
+            <input type="text" className="col-span-3 md:col-span-2 lg:col-span-1 border" />
+          </div>
+          <hr className="col-span-12 border-neutral-300"/>
+          <div className="grid grid-cols-8 lg:grid-cols-7 px-1 space-y-1 md:space-x-1">
+            <div className="col-span-8 md:col-span-4 lg:col-span-1 flex flex-col">
+              <label htmlFor="" className="" >SlNo</label>
+              <input type="text" className="border px-1.5 py-0.5" />
+            </div>
+            <div className="col-span-8 md:col-span-4 lg:col-span-2 flex flex-col">
+              <label htmlFor="">Particulars</label>
+              <input type="text" className="border px-1.5 py-0.5" />
+            </div>
+          </div>
+        </div>
+        <div className="rounded border m-1 border-neutral-300 pb-2 mb-2 shadow-sm">
+          <div className="grid grid-cols-12 px-1 py-1">
+            <h1 className="col-span-9 md:col-span-10 lg:col-span-11 font-semibold">Long Term Loans and Advances Other than Proprosed Term Loans</h1>
+            <input type="text" className="col-span-3 md:col-span-2 lg:col-span-1 border" />
+          </div>
+          <hr className="col-span-12 border-neutral-300"/>
+          <div className="grid grid-cols-8 lg:grid-cols-7 px-1 space-y-1 md:space-x-1">
+            <div className="col-span-8 md:col-span-4 lg:col-span-1 flex flex-col">
+              <label htmlFor="" className="" >SlNo</label>
+              <input type="text" className="border px-1.5 py-0.5" />
+            </div>
+            <div className="col-span-8 md:col-span-4 lg:col-span-2 flex flex-col">
+              <label htmlFor="">Particulars</label>
+              <input type="text" className="border px-1.5 py-0.5" />
+            </div>
+          </div>
+        </div>
+        <div className="rounded border m-1 border-neutral-300 pb-2 mb-2 shadow-sm">
+          <div className="grid grid-cols-12 px-1 py-1">
+            <h1 className="col-span-9 md:col-span-10 lg:col-span-11 font-semibold">Other Means of Finance</h1>
+            <input type="text" className="col-span-3 md:col-span-2 lg:col-span-1 border" />
+          </div>
+          <hr className="col-span-12 border-neutral-300"/>
+          <div className="grid grid-cols-8 lg:grid-cols-7 px-1 space-y-1 md:space-x-1">
+            <div className="col-span-8 md:col-span-4 lg:col-span-1 flex flex-col">
+              <label htmlFor="" className="" >SlNo</label>
+              <input type="text" className="border px-1.5 py-0.5" />
+            </div>
+            <div className="col-span-8 md:col-span-4 lg:col-span-2 flex flex-col">
+              <label htmlFor="">Particulars</label>
+              <input type="text" className="border px-1.5 py-0.5" />
+            </div>
+          </div>
+        </div>
+        <div className="rounded border m-1 border-neutral-300 pb-2 mb-2 shadow-sm">
+          <div className="grid grid-cols-12 px-1 py-1">
+            <h1 className="col-span-9 md:col-span-10 lg:col-span-11 font-semibold">Proposed Term Loan</h1>
+            <input type="text" className="col-span-3 md:col-span-2 lg:col-span-1 border" />
+          </div>
+          <hr className="col-span-12 border-neutral-300"/>
+          <div className="grid grid-cols-8 lg:grid-cols-7 px-1 space-y-1 md:space-x-1">
+            <div className="col-span-8 md:col-span-4 lg:col-span-1 flex flex-col">
+              <label htmlFor="" className="" >SlNo</label>
+              <input type="text" className="border px-1.5 py-0.5" />
+            </div>
+            <div className="col-span-8 md:col-span-4 lg:col-span-2 flex flex-col">
+              <label htmlFor="">Particulars</label>
+              <input type="text" className="border px-1.5 py-0.5" />
+            </div>
+          </div>
+        </div>
+        <div className="rounded border m-1 border-neutral-300 px-1.5 shadow-sm py-1">
+          <h1 className="">Total</h1>
+        </div>
+      </div>
+
     </div>
   )
 }

@@ -94,6 +94,28 @@ const inventory = [
   {name: 'Stock Group'},
   {name: 'Rawmaterial'}
 ]
+const purchases = [
+    {name: 'Suppliers'},
+    {name: 'Purchase'},
+    {name: 'Debt Note'},
+    {name: 'Credit Note'},
+    {name: 'Advances'},
+]
+const sales = [
+    {name: 'Customers'},
+    {name: 'Invoice Nos'},
+    {name: 'Sales'},
+    {name: 'Debt Note'},
+    {name: 'Credit Note'},
+    {name: 'Advances'},
+]
+const returns = [
+  {name: 'GSTR1'},
+  {name: 'GSTR1A'},
+  {name: 'GSTR2'},
+  {name: 'GSTR1X'},
+  {name: 'GSTR9'},
+]
 
 
 const GstLayout = () => {
@@ -139,7 +161,7 @@ const GstLayout = () => {
         return (
             <ul>
             {inventory.map(invent => (
-                <li className="bg-neutral-200 mb-1 border px-1">{invent.name}</li>
+                <li className="hover:text-blue-600 cursor-pointer mb-1 px-1">{invent.name}</li>
             ))}
         </ul>
         )
@@ -191,6 +213,33 @@ const GstLayout = () => {
                 <h1 className="text-xl font-semibold">Finished Good</h1>
                 <HandleInventory/>
               </div>}
+            {activeNavItem === "Purchases" &&
+              <div className="min-w-50 max-w-52 h-[103vh] overflow-y-auto bg-gray-50 p-2 border-gr border-l-1 transition-all duration-200 ease-in-out">
+                <ul>
+                  {purchases.map(invent => (
+                      <li className="mb-1 hover:text-blue-600 cursor-pointer px-1">{invent.name}</li>
+                  ))}
+                </ul>
+              </div>
+            }
+            {activeNavItem === "Sales" &&
+              <div className="min-w-50 max-w-52 h-[103vh] overflow-y-auto bg-gray-50 p-2 border-gr border-l-1 transition-all duration-200 ease-in-out">
+                <ul>
+                  {sales.map(invent => (
+                      <li className="mb-1 hover:text-blue-600 cursor-pointer px-1">{invent.name}</li>
+                  ))}
+                </ul>
+              </div>
+            }
+            {activeNavItem === "Returns" &&
+              <div className="min-w-50 max-w-52 h-[103vh] overflow-y-auto bg-gray-50 p-2 border-gr border-l-1 transition-all duration-200 ease-in-out">
+                <ul>
+                  {returns.map(invent => (
+                      <li className="mb-1 hover:text-blue-600 cursor-pointer px-1">{invent.name}</li>
+                  ))}
+                </ul>
+              </div>
+            }
         </div>
     </div>
     )
