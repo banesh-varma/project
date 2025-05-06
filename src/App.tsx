@@ -15,6 +15,7 @@ import CmaLayout from './components/CMA/CmaLayout'
 import Project from './components/CMA/Project'
 import Workings from './components/CMA/Workings'
 import { Profile } from './components/CMA/Profile'
+import { ProjectDetails } from './components/CMA/ProjectDetails'
 
 function App() {
   useEffect(() => {
@@ -85,6 +86,7 @@ function App() {
               <Route path='project' element={<Project />} />
               <Route path='workings' element={<Workings />} />
               <Route path='profile' element={<Profile />} />
+              <Route path='projectdetails' element={<ProjectDetails />} />
             </Route>
         </Routes>
       </BrowserRouter>
